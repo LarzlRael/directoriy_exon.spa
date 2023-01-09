@@ -1,0 +1,28 @@
+@import "variables";
+@import "mediaQueries";
+@import "mainPage";
+@import "singlePage";
+@import "onePlace";
+@import "formStyle";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+    box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+    /* align-items: center; */
+    /* align-content: center; */
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+:root {
+    --colorPrimary: #02243f;
+    --colorSecondary: #004f6c;
+}

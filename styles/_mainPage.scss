@@ -1,0 +1,175 @@
+body {
+    background: $backgroundColor;
+}
+.mainPage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/landscape-of-la-paz-bolivia-davide-gandolfi.jpg"); */
+    /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("https://live.staticflickr.com/4672/38557820010_cafefef29d_b.jpg") */
+    /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("https://i1.wp.com/thepartyingtraveler.com/wp-content/uploads/2020/02/dsc_0135.jpg?resize=900%2C600&ssl=1"); */
+
+    /* background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url("https://live.staticflickr.com/4672/38557820010_cafefef29d_b.jpg") center / cover;
+        /* Paralax effect */
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        opacity: 1;
+    }
+
+    @include media(xs_sm) {
+        height: auto;
+        width: 100%;
+        height: 100vh;
+    }
+}
+
+.search-filter {
+    align-items: center;
+    align-self: center;
+
+    margin-top: 4rem;
+
+    justify-content: center;
+    align-content: center;
+
+    max-width: $container-main;
+    width: $container-main;
+    position: relative;
+
+    @include media(xs_sm) {
+        margin-top: 1.5rem;
+        width: 90%;
+    }
+}
+
+.infomationContainer {
+    width: 100%;
+}
+
+$width: 80%;
+
+.informationGrids {
+    margin: auto;
+    width: $container-main;
+    display: grid;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+    /* grid-template-rows: 250px; */
+    gap: 20px;
+
+    @include media(xs_sm) {
+        width: 100%;
+        margin: auto;
+        gap: 10px;
+    }
+
+    @include media(md) {
+        width: 90%;
+    }
+}
+
+.Header-container {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    transition: 0.3s ease all;
+    /* background: var(--colorPrimary); */
+}
+.Header-container--background {
+    background: var(--colorPrimary);
+}
+.logo-container {
+    .logo-container__logo-name {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center;
+            align-items: center; */
+        @include media(xs_sm) {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    @include media(xs_sm) {
+        width: 100%;
+    }
+}
+
+.logo-name-dark {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+    @include media(xs_sm) {
+        display: flex;
+        flex-direction: column;
+
+        align-items: start;
+        padding: 1rem;
+    }
+}
+.Header-links {
+    display: flex;
+    @include media(xs_sm) {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 2.7rem;
+
+        transition: 0.3s ease all;
+        width: 100%;
+        z-index: 100;
+        margin-top: 1rem;
+
+        &.open-menu {
+            transform: translate(0%);
+            background: var(--colorPrimary);
+        }
+        &.close-menu {
+            transform: translate(-130%);
+        }
+    }
+    &.Header-links--white a {
+        color: white;
+    }
+    &.Header-links--black a {
+        color: black;
+    }
+
+    /* @media ${sizeMedia('xs_sm')} {
+      font-size: 0.9rem;
+      margin: 10px 1rem;
+      color: white;
+    } */
+}
+.link-clickeable {
+    font-size: 15px;
+    margin: 0 20px;
+    font-size: 0.9rem;
+    color: black;
+    a {
+        text-decoration: none;
+    }
+    @include media(xs_sm) {
+        font-size: 0.9rem;
+        margin: 10px 1rem;
+    }
+}

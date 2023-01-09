@@ -1,0 +1,23 @@
+.input-search {
+    padding: 15px;
+    border: none;
+    transition: 0.3s ease all;
+    &:focus {
+        outline: none !important;
+        border-color: #719ece;
+        box-shadow: 0 0 10px #719ece;
+    }
+
+    @include media(xs_sm) {
+        width: 100%;
+        border-radius: 5px;
+        margin-top: 0.9rem;
+    }
+}
+.form-inline {
+    display: flex;
+    justify-content: space-between;
+    @include media(xs_sm) {
+        flex-direction: column;
+    }
+}
