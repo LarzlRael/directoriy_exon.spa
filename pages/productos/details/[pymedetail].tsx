@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 
 import { useDocumentTitle } from '../../../src/hooks/useDocumentTitle'
 import { Loading } from '../../../src/components/widgets/loadings/Loading'
-import { HeaderBlack } from '../../../src/layout/HeaderBlack'
 import { Indicator } from '../../../src/components/Indicator'
 import { capitalizeFirstLetter } from '../../../src/components/utils/utils'
 
@@ -47,7 +46,7 @@ const PymeDetails = () => {
             background: '#F3F3F3',
           }}
         >
-          {/* <Header sticky={true} /> */}
+          <Header sticky={true} />
           <Indicator />
           <div className="one-place">
             <div className="one-place__section-title">

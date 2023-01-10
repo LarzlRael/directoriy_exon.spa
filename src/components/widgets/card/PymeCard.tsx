@@ -42,12 +42,12 @@ export const PymeCard = ({
           src={
             urlImages[0]
               ? urlImages[0]
-              : '/public/images/no-image.jpeg'
+              : 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg'
           }
           alt={nombre}
         />
       </Link>
-      
+
       <div className="contenido">
         <Label
           display="block"
@@ -60,7 +60,7 @@ export const PymeCard = ({
         </Label>
 
         {redes_sociales?.map((red_social) => (
-          <LabelAndIcon {...red_social} />
+          <LabelAndIcon {...red_social} key={red_social.urlRedSocial} />
         ))}
       </div>
     </div>

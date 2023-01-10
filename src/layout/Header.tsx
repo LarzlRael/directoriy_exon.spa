@@ -37,7 +37,6 @@ const HeaderContainer = styled.div`
 
 const MenuIconContainer = styled.div`
   display: none;
-
   @media ${sizeMedia('xs_sm')} {
     display: block;
     font-size: 1.2rem;
@@ -113,7 +112,7 @@ export const Header = ({ darkMenu = false, sticky }: PropsHeader) => {
 
   const links = [
     {
-      href: '/333',
+      href: '/',
       labelLink: 'Inicio',
     },
     {
@@ -126,7 +125,7 @@ export const Header = ({ darkMenu = false, sticky }: PropsHeader) => {
     },
     {
       href: '/auth/login',
-      labelLink: 'Mi',
+      labelLink: 'Mi Cuenta',
     },
   ]
 
@@ -143,16 +142,20 @@ export const Header = ({ darkMenu = false, sticky }: PropsHeader) => {
       <HeaderContainer>
         <div className="logo-container">
           <div className="logo-container__logo-name pointer">
-            <Image
-              width={100}
-              height={35}
-              src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
-              alt="Nego LOGO"
-            />
+            <Link href="/">
+              <>
+                <Image
+                  width={100}
+                  height={35}
+                  src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
+                  alt="Nego LOGO"
+                />
 
-            <Label color={darkMenuS ? 'black' : 'white'} fontSize="1.6rem">
-              {appName}
-            </Label>
+                <Label color={darkMenuS ? 'black' : 'white'} fontSize="1.6rem">
+                  {appName}
+                </Label>
+              </>
+            </Link>
 
             <MenuIconContainer>
               <IoMenuOutline
@@ -186,7 +189,9 @@ export const Header = ({ darkMenu = false, sticky }: PropsHeader) => {
           {links.map((link, index) => {
             return (
               <div className="link-clickeable" onClick={linkClickeable}>
-                <Link href={link.href} key={link.labelLink}>{link.labelLink}</Link>
+                <Link href={link.href} key={link.labelLink}>
+                  {link.labelLink}
+                </Link>
               </div>
             )
           })}
