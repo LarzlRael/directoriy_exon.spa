@@ -10,6 +10,7 @@ import { useWindowSize } from '../hooks/useWindows'
 import Link from 'next/link'
 import { Label } from '../components/text'
 import Image from 'next/image'
+import { links } from '../data/infoData';
 
 const HeaderContainer = styled.div`
   position: relative;
@@ -109,25 +110,6 @@ export const HeaderBlack = ({ darkMenu = false, sticky }: PropsHeader) => {
       return
     }
   }
-
-  const links = [
-    {
-      href: '/',
-      labelLink: 'Inicio',
-    },
-    {
-      href: '/test2',
-      labelLink: 'Listado',
-    },
-    {
-      href: '/test3',
-      labelLink: 'Categorias',
-    },
-    {
-      href: '/auth/login',
-      labelLink: 'Mi Cuenta',
-    },
-  ]
 
   return (
     <div

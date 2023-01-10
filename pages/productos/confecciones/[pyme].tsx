@@ -12,8 +12,9 @@ import { Label } from '../../../src/components/text/'
 import { Loading } from '../../../src/components/widgets/loadings/Loading'
 import styled from 'styled-components'
 import { sizeMedia } from '../../../styles/mediaQuerys'
-import { Cards } from '../../../src/components/widgets/card/Cards'
+
 import { Header } from '../../../src/layout/Header'
+import { PymeCard } from '../../../src/components/widgets/card'
 
 interface SingleLocationProps {
   /* label?: string */
@@ -118,7 +119,7 @@ const SingleLocation = (props: SingleLocationProps) => {
         validateArray(preconfigArray(allPymes)) ? (
           <GridContainer className="cards-container">
             {preconfigArray(allPymes).map((pyme) => (
-              <Cards {...pyme} />
+              <PymeCard {...pyme} key={pyme._id} />
             ))}
           </GridContainer>
         ) : (
@@ -140,7 +141,7 @@ const GridContainer = styled.div`
   margin: 1.5rem auto;
   grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
   width: 1000px;
-  
+
   @media ${sizeMedia('md')} {
     width: 90%;
   }

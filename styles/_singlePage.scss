@@ -1,73 +1,72 @@
 $verifed-color: #5edd6a;
 
-
 .single-card {
-    width: 100%;
-    background: #fff;
-    flex-direction: column;
-    border-radius: 10px 10px 0 0;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    /* height: 300px; */
-    -webkit-box-shadow: 5px 5px 15px -9px #000000;
-    box-shadow: 5px 5px 15px -9px #000000;
-    transition: 0.3s ease all;
-    position: relative;
+  width: 100%;
+  background: #fff;
+  flex-direction: column;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  /* height: 300px; */
+  -webkit-box-shadow: 5px 5px 15px -9px #000000;
+  box-shadow: 5px 5px 15px -9px #000000;
+  transition: 0.3s ease all;
+  position: relative;
 
-    .check {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        z-index: 9;
-    }
-    &.verificado {
-        border: 1px solid $verifed-color;
-        -webkit-box-shadow: 5px 5px 15px -9px $verifed-color;
-        box-shadow: 5px 5px 15px -9px $verifed-color;
-        &:hover {
-            -webkit-box-shadow: 2px 2px 31px -10px $verifed-color;
-            box-shadow: 2px 2px 31px -10px $verifed-color;
-        }
-    }
-    @include media(sm) {
-        flex-direction: row;
-        height: 200px;
-        overflow: hide;
-        border-radius: 20px 0px 0 20px;
-    }
-
-    @include media(sx) {
-        flex-direction: row;
-        height: 200px;
-        overflow: hide;
-        border-radius: 20px 0px 0 20px;
-    }
+  .check {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 9;
+  }
+  &.verificado {
+    border: 1px solid $verifed-color;
+    -webkit-box-shadow: 5px 5px 15px -9px $verifed-color;
+    box-shadow: 5px 5px 15px -9px $verifed-color;
     &:hover {
-        -webkit-box-shadow: 2px 2px 31px -10px #000000;
-        box-shadow: 2px 2px 31px -10px #000000;
+      -webkit-box-shadow: 2px 2px 31px -10px $verifed-color;
+      box-shadow: 2px 2px 31px -10px $verifed-color;
     }
+  }
+  @include media(sm) {
+    flex-direction: row;
+    height: 200px;
+    overflow: hide;
+    border-radius: 20px 0px 0 20px;
+  }
+
+  @include media(sx) {
+    flex-direction: row;
+    height: 200px;
+    overflow: hide;
+    border-radius: 20px 0px 0 20px;
+  }
+  &:hover {
+    -webkit-box-shadow: 2px 2px 31px -10px #000000;
+    box-shadow: 2px 2px 31px -10px #000000;
+  }
 }
 .contenido {
-    padding: 1rem;
+  padding: 1rem;
 }
 .info-card {
-    margin-top: 1.5rem;
+  margin-top: 1.5rem;
 
-    align-items: center;
-    justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 
-    @include media(sm) {
-        margin-top: 0;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  @include media(sm) {
+    margin-top: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .main-image {
+  width: 100%;
+  height: 300px;
+  @include media(sm) {
     width: 100%;
-    height: 300px;
-    @include media(sm) {
-        width: 100%;
-        height: 100%;
-    }
+    height: 100%;
+  }
 }

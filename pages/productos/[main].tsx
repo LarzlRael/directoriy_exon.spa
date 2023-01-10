@@ -11,15 +11,25 @@ import { departamentos } from '../../src/data/infoData'
 import { primaryColor } from '../../src/context/themeColors'
 import { IoSearch } from 'react-icons/io5'
 import { validateArray } from '../../src/components/utils/validation/validation'
-import { Cards } from '../../src/components/widgets/card/'
+import { PymeCard } from '../../src/components/widgets/card/'
 import { Label } from '../../src/components/text/'
 import { Loading } from '../../src/components/widgets/loadings/Loading'
 import { sizeMedia } from '../../styles/mediaQuerys'
 import { Button } from '../../src/components/buttons/Button'
 import { Header } from '../../src/layout/Header'
-import { HeaderBlack } from '../../src/layout/HeaderBlack';
+import { HeaderBlack } from '../../src/layout/HeaderBlack'
 
 interface SingleLocationProps {}
+
+const InputSearchContainer = styled.div`
+  display: flex;
+  margin: 3rem 2rem;
+  align-content: center;
+  justify-content: center;
+  @media ${sizeMedia('xs')} {
+    flex-direction: column;
+  }
+`
 
 const SingleLocation = (props: SingleLocationProps) => {
   useDocumentTitle('Categorias')
@@ -69,6 +79,7 @@ const SingleLocation = (props: SingleLocationProps) => {
       )
     }
   }
+
   return (
     <div>
       <HeaderBlack darkMenu={true} sticky={true} />
@@ -78,14 +89,7 @@ const SingleLocation = (props: SingleLocationProps) => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         <Form>
           {/* <InputSearch type="text"> */}
-          <div
-            style={{
-              display: 'flex',
-              margin: '3rem 2rem',
-              alignContent: 'center',
-              justifyContent: 'center',
-            }}
-          >
+          <InputSearchContainer>
             <Field
               id="nombre"
               name="nombre"
@@ -112,7 +116,7 @@ const SingleLocation = (props: SingleLocationProps) => {
             >
               Buscar
             </Button>
-          </div>
+          </InputSearchContainer>
         </Form>
       </Formik>
 
@@ -120,7 +124,7 @@ const SingleLocation = (props: SingleLocationProps) => {
         validateArray(preconfigArray(allPymes)) ? (
           <GridContainer className="cards-container">
             {preconfigArray(allPymes).map((pyme) => (
-              <Cards {...pyme} key={uuidv4()} />
+              <PymeCard {...pyme} key={pyme._id} />
             ))}
           </GridContainer>
         ) : (
