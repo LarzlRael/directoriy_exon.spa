@@ -17,6 +17,7 @@ import { Loading } from '../../src/components/widgets/loadings/Loading'
 import { sizeMedia } from '../../styles/mediaQuerys'
 import { Button } from '../../src/components/buttons/Button'
 import { Header } from '../../src/layout/Header'
+import { HeaderBlack } from '../../src/layout/HeaderBlack';
 
 interface SingleLocationProps {}
 
@@ -70,7 +71,7 @@ const SingleLocation = (props: SingleLocationProps) => {
   }
   return (
     <div>
-      <Header darkMenu={true} sticky={true} />
+      <HeaderBlack darkMenu={true} sticky={true} />
 
       <Indicator {...props} />
 

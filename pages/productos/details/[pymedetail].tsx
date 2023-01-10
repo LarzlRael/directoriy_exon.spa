@@ -17,7 +17,7 @@ import useAxiosAuth from '../../../src/hooks/useAxios'
 import { PymeInterfaceResponse } from '../../../src/interfaces/pymeResponse'
 
 import { useRouter } from 'next/router'
-import { Header } from '../../../src/layout/Header'
+import { HeaderBlack } from '../../../src/layout/HeaderBlack'
 
 const PymeDetails = () => {
   const router = useRouter()
@@ -46,7 +46,7 @@ const PymeDetails = () => {
             background: '#F3F3F3',
           }}
         >
-          <Header sticky={true} />
+          <HeaderBlack darkMenu={true} sticky={true} />
           <Indicator />
           <div className="one-place">
             <div className="one-place__section-title">
@@ -98,7 +98,7 @@ const PymeDetails = () => {
 
               {/* localization */}
 
-             {/*  {onePyme?.localizacion && (
+              {/*  {onePyme?.localizacion && (
                 <MapLocalization
                   localization={onePyme?.localizacion}
                   direction={onePyme?.direccion}
