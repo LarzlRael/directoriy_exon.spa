@@ -124,7 +124,11 @@ const SingleLocation = (props: SingleLocationProps) => {
         validateArray(preconfigArray(allPymes)) ? (
           <GridContainer className="cards-container">
             {preconfigArray(allPymes).map((pyme) => (
-              <PymeCard {...pyme} key={pyme._id} />
+              <PymeCard
+                pymeInterfaceResponse={pyme}
+                key={pyme._id}
+                isAdmin={false}
+              />
             ))}
           </GridContainer>
         ) : (

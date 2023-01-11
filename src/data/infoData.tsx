@@ -1,4 +1,7 @@
 import { InformationPlacesI } from '../components/InformationPlaces'
+import { IoPerson, IoHammer } from 'react-icons/io5'
+import { MdFileUpload } from 'react-icons/md'
+
 export const informationPlacesData: InformationPlacesI[] = [
   {
     icon: 'fab fa-accusoft',
@@ -85,5 +88,37 @@ export const links = [
   {
     href: '/auth/login',
     labelLink: 'Mi Cuenta',
+  },
+]
+
+interface AccountsLinkInterface {
+  title_group: string
+  items: ItemInterface[]
+}
+interface ItemInterface {
+  title: string
+  to: string
+  icon: any
+}
+export const accountsLink: AccountsLinkInterface[] = [
+  {
+    title_group: 'Usuario',
+    items: [
+      {
+        title: 'Mi cuenta',
+        to: '/admin/profile',
+        icon: <IoPerson size={25} />,
+      },
+    ],
+  },
+  {
+    title_group: 'Pymes',
+    items: [
+      {
+        title: 'Adminstrar Pymes',
+        to: '/dashboard/actualizar',
+        icon: <MdFileUpload size={25} />,
+      },
+    ],
   },
 ]

@@ -14,13 +14,15 @@ import { Label } from '../../text'
 import { capitalizeFirstLetter } from '../../utils/utils'
 import Image from 'next/image'
 
+interface PymeCardProps {
+  pymeInterfaceResponse: PymeInterfaceResponse
+  isAdmin: boolean
+}
 export const PymeCard = ({
-  nombre,
-  urlImages,
-  redes_sociales,
-  verificado,
-  _id,
-}: PymeInterfaceResponse) => {
+  pymeInterfaceResponse: { nombre, urlImages, redes_sociales, verificado, _id },
+  isAdmin,
+}: PymeCardProps) => {
+  console.log(isAdmin)
   return (
     <div
       className={`single-card flex ${
@@ -33,7 +35,9 @@ export const PymeCard = ({
         </div>
       )}
 
-      <Link href={`/productos/details/${nombre}`}>
+      <Link
+        href={isAdmin ? `/auth/pyme/${nombre}` : `/productos/details/${nombre}`}
+      >
         <Image
           /* layout="fill" */
           height={250}

@@ -5,11 +5,13 @@ interface indicatorInterface {
 export interface AuthState {
   value: number
   user: any
+  isLogged: boolean
 }
 
 const initialState: AuthState = {
   value: 10,
   user: null,
+  isLogged: false,
 }
 
 export const authSlice = createSlice({
@@ -17,14 +19,12 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     startSession: (state, action: PayloadAction<any>) => {
-      console.log(state)
-      console.log(action.payload);
+      console.log(action.payload)
+      state.isLogged = true
       state.user = action.payload
     },
   },
 })
-
-// Action creators are generated for each case reducer function
 export const { startSession } = authSlice.actions
 
-/* export default counterSlice.reducer */
+

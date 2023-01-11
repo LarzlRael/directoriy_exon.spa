@@ -31,8 +31,10 @@ const PymeDetails = () => {
   })
 
   useEffect(() => {
-    reload()
-  }, [pymedetail])
+    if (router.isReady) {
+      reload()
+    }
+  }, [router.isReady])
 
   useDocumentTitle(onePyme?.nombre!)
 

@@ -13,6 +13,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "axios": "^0.27.2",
+    "classnames": "^2.3.2",
     "formik": "^2.2.9",
     "mapbox-gl": "^2.3.1",
     "next": "^12.1.6",

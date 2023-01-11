@@ -1,4 +1,4 @@
-.login-div {
+.Form__container-main {
     display: flex;
     width: 65%;
     margin: auto;
@@ -9,12 +9,12 @@
     box-shadow: -2px 6px 9px 1px rgba(160, 145, 147, 1);
 
     @include media(sm) {
-        flex-direction: column;
+        flex-direction: column-reverse;
         margin: 0;
         width: 100%;
         margin-top: 1rem;
     }
-    .form {
+    .Form__container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -23,10 +23,10 @@
             height: 100vh;
         }
 
-        .formLogin {
+        .Form__login {
             width: 100%;
             padding: 2rem;
-            .title {
+            .Form__login--title {
                 text-align: center;
                 font-size: 2.2rem;
                 font-weight: 800;
@@ -34,7 +34,7 @@
                 color: $secondary-color;
                 text-transform: uppercase;
             }
-            .input-login {
+            .Form__input {
                 display: block;
                 width: 100%;
                 margin: auto;
@@ -81,7 +81,7 @@
             }
         }
     }
-    .info-login {
+    .Form__info-login {
         box-sizing: border-box;
         width: 100%;
         background: $secondary-color;
@@ -143,7 +143,6 @@
             .dash-item {
                 display: block;
                 color: white;
-
                 margin: 0;
                 padding: 1rem 1rem 0.5rem 2rem;
                 text-decoration: none;
@@ -152,6 +151,9 @@
                 text-transform: capitalize;
                 cursor: pointer;
                 transition: 0.2s ease all;
+                display: flex;
+                align-items: center;
+
                 &:hover {
                     background: $dash-title-color;
                     border-left: 5px solid $primary-color;

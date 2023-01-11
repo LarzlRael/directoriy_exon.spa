@@ -1,23 +1,25 @@
-import styled from 'styled-components';
-import { primaryColor } from '../../../context/themeColors';
+import styled from 'styled-components'
+import { primaryColor } from '../../../context/themeColors'
 
-export const Loading = () => {
-    return (
-        <div style={{
-            width: '100%',
-            height: '100vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-        }}>
-            <LoadingSpiner>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </LoadingSpiner>
-        </div>
-    )
+export const LoadingExpanded = () => {
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <LoadingSpiner>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </LoadingSpiner>
+    </div>
+  )
 }
 const LoadingSpiner = styled.div`
     display: block;
@@ -54,4 +56,17 @@ div:nth-child(3) {
     100% {
     transform: rotate(360deg);
     }
-`;
+`
+
+export const Loading = () => {
+  return (
+    <>
+      <LoadingSpiner>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </LoadingSpiner>
+    </>
+  )
+}
