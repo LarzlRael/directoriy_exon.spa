@@ -1,3 +1,4 @@
+import React from 'react'
 import '../styles/index.scss'
 import { Provider } from 'react-redux';
 import { store } from '../src/store/store';
