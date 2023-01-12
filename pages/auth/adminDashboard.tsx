@@ -14,10 +14,11 @@ import {
   preconfigArray,
   validateArray,
 } from '../../src/components/utils/validation/validation'
-import { GridContainer } from '../productos/[main]'
+
 import { PymeCard } from '../../src/components/widgets/card/PymeCard'
 import { Label } from '../../src/components/text/Label'
 import AdminDashBoard from '../../src/components/dashboard/AdminDashBoard'
+import { GridContainer } from '../productos/[main]';
 import {
   Loading,
   LoadingExpanded,

@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios'
-axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL?.toString()
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_URL
 
 axios.interceptors.request.use(
   (config: any) => {
-    const token_seguridad = window.localStorage.getItem('token_seguridad')
+    const token_seguridad = window.localStorage.getItem('token')
     if (token_seguridad) {
       config.headers.Authorization = 'Bearer ' + token_seguridad
       return config

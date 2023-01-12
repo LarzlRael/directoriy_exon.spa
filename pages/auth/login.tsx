@@ -31,6 +31,7 @@ function login() {
     setloading(false)
     if (validateStatus(action.status)) {
       dispatch(startSession({ token: action.data.token }))
+      window.localStorage.setItem('token', action.data.token.accessToken)
       push('/auth/adminDashboard')
     } else {
       console.log('login fail')

@@ -143,7 +143,7 @@ const SingleLocation = (props: SingleLocationProps) => {
   )
 }
 
-const GridContainer = styled.div`
+export const GridContainer = styled.div`
   display: grid;
   gap: 2rem;
   max-width: $container-main;

@@ -100,12 +100,12 @@ const PymeDetails = () => {
 
               {/* localization */}
 
-              {/*  {onePyme?.localizacion && (
+               {onePyme?.localizacion && (
                 <MapLocalization
                   localization={onePyme?.localizacion}
                   direction={onePyme?.direccion}
                 />
-              )} */}
+              )}
             </div>
 
             <Profile {...onePyme} />
