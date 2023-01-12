@@ -7,27 +7,35 @@ import {
   IoLogoWhatsapp,
   IoLogoInstagram,
 } from 'react-icons/io5'
-import {
-  RedesSociales,
-  PymeInterfaceResponse,
-} from '../../interfaces/pymeResponse'
-import { H2 } from '../text/H2'
 
+import { H2 } from '../text/H2'
+import {
+  PymesResponseInterface,
+  RedesSociales,
+} from '../../interfaces/pymesResponseInterface'
+import TimeAgo from 'javascript-time-ago'
+import es from 'javascript-time-ago/locale/es'
 interface ProfileProps {
-  nombre?: string
-  urlNegocio?: string
-  propietario?: string
-  urlProfile?: string
-  redesSociales?: RedesSociales[]
+  pymeResponse: PymesResponseInterface
 }
+TimeAgo.addDefaultLocale(es)
+const timeAgo = new TimeAgo('es-ES')
 
 export const Profile = ({
   nombre,
   urlNegocio,
   propietario,
-  urlProfile,
-  redesSociales,
-}: ProfileProps) => {
+  profileImage,
+  redes_sociales,
+  createdAt,
+}: PymesResponseInterface) => {
+  console.log(
+    '\nnombre: ' + nombre,
+    '\nurlNegocio: ' + urlNegocio,
+    '\npropietario: ' + propietario,
+    '\nurlProfile: ' + profileImage,
+    '\nredesSociales: ' + redes_sociales,
+  )
   return (
     <div className="informationPlace">
       <div className="information">
@@ -46,45 +54,49 @@ export const Profile = ({
 
           <div className="info-profile flex">
             <div className="image">
-              {/* <Image
-                layout="fill"
+              <Image
+                width={150}
+                height={150}
                 src={
-                  urlProfile
-                    ? urlProfile
+                  profileImage
+                    ? profileImage
                     : '/public/images/profile-image.webp'
                 }
                 style={{
                   borderRadius: '100%',
-                  height: '60px',
-                  width: '60px',
-                  marginRight: '0.5rem',
+
+                  /* marginLeft: '1rem', */
                 }}
                 alt="profile"
-              /> */}
+              />
             </div>
 
-            <div className="nameAndCategory">
-              <label htmlFor="">{nombre}</label>
-              <p
-                style={{
-                  fontSize: '14px',
-                }}
-              >
-                Miembro desde hace 1 año
-              </p>
-            </div>
+            {createdAt && (
+              <div className="nameAndCategory">
+                <label htmlFor="">{nombre}</label>
+                <p
+                  style={{
+                    fontSize: '14px',
+                  }}
+                >
+                  {(timeAgo.format(new Date(createdAt)))}
+                </p>
+              </div>
+            )}
           </div>
           <div className="contact">
-            <div className="icon flex">
-              <IoMailOutline width="20px" height="20px" />
-              <label
-                style={{
-                  marginLeft: '0.5rem',
-                }}
-              >
-                {urlNegocio ? urlNegocio : 'Todavia no hay Url we'}
-              </label>
-            </div>
+            {urlNegocio && (
+              <div className="icon flex">
+                <IoMailOutline width="20px" height="20px" />
+                <label
+                  style={{
+                    marginLeft: '0.5rem',
+                  }}
+                >
+                  {urlNegocio}
+                </label>
+              </div>
+            )}
             <a
               href="https://demo.directorist.com/plugin/demo-one/directory/the-british-museum/"
               style={{
@@ -102,7 +114,7 @@ export const Profile = ({
                 justifyContent: 'space-evenly',
               }}
             >
-              {redesSociales?.map(({ nombre, _id, urlRedSocial }) => (
+              {redes_sociales?.map(({ nombre, _id, urlRedSocial }) => (
                 <SocialLink
                   nombre={nombre}
                   _id={_id}

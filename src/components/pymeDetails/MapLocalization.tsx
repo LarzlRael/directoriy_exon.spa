@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoMapOutline } from 'react-icons/io5'
 
 import ReactMapGL from 'react-map-gl'
-import { useDirectionsMap } from '../../hooks/useDirectionsMap'
-
 import { CardDescription } from '../widgets/card/'
 
 interface localizationProps {
@@ -16,10 +14,17 @@ export const MapLocalization = ({
   direction,
 }: localizationProps) => {
   const coords = localization.split(',')
-  const { viewport, setViewport, mapboxglAccessToken } = useDirectionsMap(
+  /* const { viewport, setViewport, mapboxglAccessToken } = useDirectionsMap(
     parseFloat(coords[1]),
     parseFloat(coords[0]),
-  )
+  ) */
+  const [viewport, setViewport] = useState({
+    longitude: parseFloat(coords[1]),
+    latitude: parseFloat(coords[0]),
+    zoom: 16,
+  })
+  console.log(viewport.longitude, viewport.latitude);
+  const mapboxglAccessToken = process.env.NEXT_PUBLIC_MAPBOX_KEY
 
   return (
     <CardDescription className="location" title="Localizacion">
@@ -38,7 +43,6 @@ export const MapLocalization = ({
           </label>
         </div>
         <div className="spacer"></div>
-
         <div className="">{direction}</div>
       </div>
 
@@ -59,7 +63,7 @@ export const MapLocalization = ({
             width="100%"
             height="100%"
             onViewportChange={setViewport}
-            mapboxApiAccessToken={mapboxglAccessToken?.toString()}
+            mapboxApiAccessToken={mapboxglAccessToken}
             mapStyle="mapbox://styles/mapbox/streets-v11"
           >
             {/* <Marker

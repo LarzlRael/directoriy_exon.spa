@@ -24,10 +24,8 @@ function login() {
 
   async function onSubmit({ password, username }: initialValuesI) {
     setloading(true)
-    const action: any = await postAction({
-      url: 'http://localhost:4000/auth/login',
-      data: { password, username },
-    })
+    
+    const action: any = await postAction('http://localhost:4000/auth/login', { password, username })
     setloading(false)
     if (validateStatus(action.status)) {
       dispatch(startSession({ token: action.data.token }))

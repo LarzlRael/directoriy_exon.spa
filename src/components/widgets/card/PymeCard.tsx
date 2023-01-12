@@ -9,7 +9,7 @@ import {
 import {
   PymeInterfaceResponse,
   RedesSociales,
-} from '../../../interfaces/pymeResponse'
+} from '../../../interfaces/pymesResponseInterface'
 import { Label } from '../../text'
 import { capitalizeFirstLetter } from '../../utils/utils'
 import Image from 'next/image'

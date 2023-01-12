@@ -1,8 +1,11 @@
 import { AxiosRequestConfig } from 'axios'
 import HttpClient from '../HttpClient'
-export const postAction = (axiosRequestConfig: AxiosRequestConfig) => {
+export const postAction = (url: string, body: any) => {
   return new Promise((resolve, eject) => {
-    HttpClient.post(axiosRequestConfig)
+    HttpClient.post({
+      url: url,
+      data: body,
+    })
       .then((response) => {
         resolve(response)
       })
@@ -24,9 +27,12 @@ export const postEmptyAction = (axiosRequestConfig: AxiosRequestConfig) => {
       })
   })
 }
-export const putAction = (axiosRequestConfig: AxiosRequestConfig) => {
+export const putAction = (url: string, body: any) => {
   return new Promise((resolve, eject) => {
-    HttpClient.put(axiosRequestConfig)
+    HttpClient.put({
+      url: url,
+      data: body,
+    })
       .then((response) => {
         resolve(response)
       })
@@ -37,9 +43,11 @@ export const putAction = (axiosRequestConfig: AxiosRequestConfig) => {
   })
 }
 
-/* export const getAction = (url) => {
+export const getAction = (url: string) => {
   return new Promise((resolve, eject) => {
-    HttpClient.get(url)
+    HttpClient.get({
+      url,
+    })
       .then((response) => {
         resolve(response)
       })
@@ -49,9 +57,12 @@ export const putAction = (axiosRequestConfig: AxiosRequestConfig) => {
       })
   })
 }
+
 export const deleteAction = (url: string) => {
   return new Promise((resolve, eject) => {
-    HttpClient.delete(url)
+    HttpClient.delete({
+      url,
+    })
       .then((response) => {
         resolve(response)
       })
@@ -60,4 +71,4 @@ export const deleteAction = (url: string) => {
         resolve(error.response)
       })
   })
-} */
+}

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { createContext, useReducer } from 'react';
-import { PymeInterfaceResponse } from '../interfaces/pymeResponse';
+import { PymeInterfaceResponse } from '../interfaces/pymesResponseInterface';
 import { serverAPI } from '../provider/serverProvider';
 import { pymeReducer, PymeState } from './pymeReducer';
 import { capitalizeFirstLetter } from '../components/utils/utils';

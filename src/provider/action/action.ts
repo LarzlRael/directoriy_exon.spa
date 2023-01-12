@@ -15,10 +15,13 @@ export const getAction = (url: string) => {
       })
   })
 }
-export const postAction = (axiosRequestConfig: AxiosRequestConfig) => {
+export const postAction = (url: string, body: any) => {
   return new Promise((resolve, eject) => {
     instancia
-      .post(axiosRequestConfig.url!, axiosRequestConfig.data)
+      .post(
+        url,
+        body,
+      )
       .then((response) => {
         resolve(response)
       })

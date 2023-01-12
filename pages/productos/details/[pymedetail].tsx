@@ -14,7 +14,7 @@ import {
 } from '../../../src/components/pymeDetails/'
 
 import useAxiosAuth from '../../../src/hooks/useAxios'
-import { PymeInterfaceResponse } from '../../../src/interfaces/pymeResponse'
+import { PymesResponseInterface } from '../../../src/interfaces/pymesResponseInterface'
 
 import { useRouter } from 'next/router'
 import { HeaderBlack } from '../../../src/layout/HeaderBlack'
@@ -24,7 +24,7 @@ const PymeDetails = () => {
   let { pymedetail } = router.query
 
   const { response: onePyme, loading, reload } = useAxiosAuth<
-    PymeInterfaceResponse
+  PymesResponseInterface
   >({
     url: `/pymes/${pymedetail}`,
     method: 'GET',
@@ -100,7 +100,7 @@ const PymeDetails = () => {
 
               {/* localization */}
 
-               {onePyme?.localizacion && (
+              {onePyme?.localizacion && (
                 <MapLocalization
                   localization={onePyme?.localizacion}
                   direction={onePyme?.direccion}
@@ -108,7 +108,9 @@ const PymeDetails = () => {
               )}
             </div>
 
-            <Profile {...onePyme} />
+            <Profile
+              {...onePyme}
+            />
           </div>
         </div>
       ) : (

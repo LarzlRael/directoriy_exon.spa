@@ -72,6 +72,13 @@ export const departamentos = [
   'Beni',
   'Pando',
 ]
+export const socialNetworks = [
+  'Facebook',
+  'Instagram',
+  'Twitter',
+  'Youtube',
+  'Linkedin',
+]
 export const links = [
   {
     href: '/',

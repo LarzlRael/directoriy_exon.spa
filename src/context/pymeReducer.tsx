@@ -1,4 +1,4 @@
-import { PymeInterfaceResponse } from '../interfaces/pymeResponse';
+import { PymeInterfaceResponse } from '../interfaces/pymesResponseInterface';
 
 export interface PymeState {
 

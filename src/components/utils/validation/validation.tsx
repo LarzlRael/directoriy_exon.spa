@@ -1,4 +1,4 @@
-import { PymeInterfaceResponse } from '../../../interfaces/pymeResponse';
+import { PymeInterfaceResponse } from '../../../interfaces/pymesResponseInterface';
 export const validateArray = (dataArray: any[]) => {
   return dataArray ? (dataArray.length !== 0 ? true : false) : false
 }
