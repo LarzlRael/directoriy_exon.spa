@@ -60,8 +60,7 @@ export const Button = ({
           marginLeft: '10px',
         }}
       />
-
-      {icon}
+      {icon && icon}
     </ButtonStyle>
   )
 }

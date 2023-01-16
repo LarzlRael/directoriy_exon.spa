@@ -7,6 +7,7 @@ const BoxFlexStyle = styled.div<{
   wrap: string
   margin: string
   alignItems: string
+  width: string
 }>`
   display: flex;
   align-items: ${(props) => (props.alignItems ? props.alignItems : 'center')};
@@ -15,10 +16,12 @@ const BoxFlexStyle = styled.div<{
   justify-content: ${(props) => props.justify};
   margin: ${(props) => props.margin};
   flex-direction: ${(props) => props.direction};
+  width: ${(props) => props.width};
   @media screen and (max-width: 425px) {
     flex-direction: ${(props) => props.direction};
     gap: 5px;
     align-items: ${(props) => (props.alignItems ? props.alignItems : 'center')};
+
   }
 `
 interface BoxFlexI {
@@ -37,6 +40,7 @@ interface BoxFlexI {
   className: string
   margin?: string
   alignItems?: 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'baseline'
+  width?: string
 }
 const BoxFlex = (props: BoxFlexI) => {
   const {
@@ -48,6 +52,7 @@ const BoxFlex = (props: BoxFlexI) => {
     wrap = 'wrap',
     alignItems = 'center',
     margin = '',
+    width
   } = props
   return (
     <BoxFlexStyle
@@ -58,6 +63,7 @@ const BoxFlex = (props: BoxFlexI) => {
       wrap={wrap}
       alignItems={alignItems}
       margin={margin}
+      width={props.width!}
     >
       {children}
     </BoxFlexStyle>

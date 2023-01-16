@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from 'axios'
 import HttpClient from '../HttpClient'
 export const postAction = (url: string, body: any) => {
   return new Promise((resolve, eject) => {
@@ -10,12 +9,12 @@ export const postAction = (url: string, body: any) => {
         resolve(response)
       })
       .catch((error) => {
-        console.log(error.response)
+        console.log(error)
         resolve(error.response)
       })
   })
 }
-export const postEmptyAction = (url:string,body:any) => {
+export const postEmptyAction = (url: string, body: any) => {
   return new Promise((resolve, eject) => {
     HttpClient.postEmpty({
       url: url,

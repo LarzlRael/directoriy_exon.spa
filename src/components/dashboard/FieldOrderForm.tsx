@@ -26,17 +26,17 @@ const FieldOrderForm = (props: any) => {
   const OnSubmit = async () => {
     try {
       setload(true)
-      let body: { Id: number; Order: number }[] = []
-      state.quotes.forEach((e, index) => {
-        body.push({ Id: parseInt(e.id), Order: index + 1 })
+      console.log(state.quotes)
+      const body = state.quotes.map((quote)=>{
+        return quote.content
       })
       await putAction(url, body).then((res:any) => {
         setload(false)
         if (validateStatus(res.status)) {
           openSnackbar('Se guardo exitosamente', true, true)
-          onClose()
+          alert('Se guardo exitosamente')
         } else {
-          openSnackbar('No se pudo guardar', true, false)
+          alert('error')
         }
       })
     } catch (e) {

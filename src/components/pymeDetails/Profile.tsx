@@ -53,8 +53,8 @@ export const Profile = ({
           <div className="info-profile flex">
             <div className="image">
               <Image
-                width={150}
-                height={150}
+                width={50}
+                height={50}
                 src={
                   profileImage
                     ? profileImage

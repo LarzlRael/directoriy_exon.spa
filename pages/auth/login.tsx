@@ -8,12 +8,14 @@ import { startSession } from '../../src/store/slices/slices'
 import { Loading } from '../../src/components/widgets/loadings/Loading'
 import { H2 } from '../../src/components/text/H2'
 import { useRouter } from 'next/dist/client/router'
+import { useVerifyLogginHook } from '../../src/hooks/useVerifyLoggingHook';
 
 function login() {
   const { isLogged } = useSelector((state: RootState) => state.authSlice)
   const dispatch = useDispatch()
   const [loading, setloading] = useState(false)
   const { push } = useRouter()
+  useVerifyLogginHook()
   useEffect(() => {
     if (isLogged) {
       push('/auth/adminDashboard')
@@ -24,17 +26,33 @@ function login() {
 
   async function onSubmit({ password, username }: initialValuesI) {
     setloading(true)
-    
-    const action: any = await postAction('http://localhost:4000/auth/login', { password, username })
-    setloading(false)
-    if (validateStatus(action.status)) {
+
+    postAction('http://localhost:4000/auth/login', { password, username })
+      .then((res: any) => {
+        setloading(false)
+        if (validateStatus(res.status)) {
+          dispatch(startSession({ token: res.data.accessToken }))
+          window.localStorage.setItem('token', res.data.accessToken)
+          push('/auth/adminDashboard')
+        } else {
+          setloading(false)
+          console.log('login fail')
+        }
+      })
+      .catch((err) => {
+        setloading(false)
+        console.log(err)
+      })
+
+    /* if (validateStatus(action.status)) {
       dispatch(startSession({ token: action.data.token }))
       window.localStorage.setItem('token', action.data.token.accessToken)
       push('/auth/adminDashboard')
     } else {
       console.log('login fail')
-    }
+    } */
   }
+
   interface initialValuesI {
     username: string
     password: string

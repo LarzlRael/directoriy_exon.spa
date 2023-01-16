@@ -84,26 +84,12 @@ function DropzoneInput({
     )
 
     if (acceptedFiles.length > 0) {
-      console.log([name])
-
-      console.log(acceptedFiles)
       uploadFiles((a: any) => ({
         ...a,
         [name]: acceptedFiles[0],
       }))
     }
   }, [acceptedFiles, uploadFiles, name])
-  // const files = acceptedFiles.map((file, i) => {
-  //   const f = file.path.split(".");
-  //   return (
-  //     <div key={i} className="StyledDropzone__file">
-  //       <div className="">{f[f.length - 1]}</div>
-  //       <h4>{file.path}</h4>
-  //       <i className="fas fa-times" onClick={() => clearAll()}></i>
-  //       {/* <h5>{Math.round(file.size / 1024)}kb</h5> */}
-  //     </div>
-  //   );
-  // });
 
   const style = useMemo(
     () => ({

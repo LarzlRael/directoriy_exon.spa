@@ -12,7 +12,7 @@ import { FaBars, FaTimes } from 'react-icons/fa'
 interface AdminDashBoardProps {
   children: React.ReactNode
 }
-function AdminDashBoard({ children }: AdminDashBoardProps) {
+export const AdminDashBoard = ({ children }: AdminDashBoardProps) => {
   const [openMenu, setOpenMenu] = useState(false)
   /* const { logOut } = useContext(AuthAdminContext) */
 
@@ -47,8 +47,8 @@ function AdminDashBoard({ children }: AdminDashBoardProps) {
 
         <h4>Panel de administracion</h4>
       </div>
-      <div className="dashboard">
-        <div className={`dash ${openMenu ? 'open-menu' : 'close-menu'}`}>
+      <div className="AdminDashBoard">
+        <div className={`AdminDashBoard__dash ${openMenu ? 'open-menu' : 'close-menu'}`}>
           <div className="profile-image">
             <img
               className="profile-image-img"
@@ -57,7 +57,7 @@ function AdminDashBoard({ children }: AdminDashBoardProps) {
             />
             <span className="profile-image-name">Nombre de Usuario</span>
           </div>
-          <div className="dash-group">
+          <div className="AdminDashBoard__dash--group">
             {accountsLink.map(({ title_group, items }) => (
               <div key={uuidv4()}>
                 <span className="title-dash">{title_group}</span>
@@ -65,12 +65,11 @@ function AdminDashBoard({ children }: AdminDashBoardProps) {
                 {items.map(({ to, icon, title }) => (
                   <NavLink
                     key={uuidv4()}
-                    /* className="dash-item" */
                     activeClassName="active"
                     onClick={goToLink}
                     href={to}
                   >
-                    <div className="dash-item">
+                    <div className="AdminDashBoard__dash--item">
                       {icon}
                       <span
                         style={{
@@ -86,8 +85,8 @@ function AdminDashBoard({ children }: AdminDashBoardProps) {
             ))}
           </div>
           <span className="title-dash">Empleados</span>
-          <div className="dash-group">
-            <ul className="dash-item">Salir</ul>
+          <div className="AdminDashBoard__dash--group">
+            <ul className="AdminDashBoard__dash--item">Salir</ul>
           </div>
         </div>
         <div className="dash-content">{children}</div>
@@ -95,4 +94,3 @@ function AdminDashBoard({ children }: AdminDashBoardProps) {
     </>
   )
 }
-export default AdminDashBoard

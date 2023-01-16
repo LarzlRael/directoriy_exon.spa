@@ -19,12 +19,13 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     startSession: (state, action: PayloadAction<any>) => {
-      console.log(action.payload)
       state.isLogged = true
       state.user = action.payload
     },
+    logOutSession: (state) => {
+      localStorage.removeItem('token')
+      state.isLogged = false
+    },
   },
 })
-export const { startSession } = authSlice.actions
-
-
+export const { startSession, logOutSession } = authSlice.actions

@@ -17,14 +17,16 @@ import {
 
 import { PymeCard } from '../../src/components/widgets/card/PymeCard'
 import { Label } from '../../src/components/text/Label'
-import AdminDashBoard from '../../src/components/dashboard/AdminDashBoard'
+import {AdminDashBoard} from '../../src/components/dashboard/AdminDashBoard'
 import { GridContainer } from '../productos/[main]'
 import {
   Loading,
   LoadingExpanded,
 } from '../../src/components/widgets/loadings/Loading'
+import { useVerifyLogginHook } from '../../src/hooks/useVerifyLoggingHook'
 
 function adminDashboard() {
+  useVerifyLogginHook();
   const [openMenu, setOpenMenu] = useState(false)
   /* const { logOut } = useContext(AuthAdminContext) */
   const { response: allPymes, loading, reload } = useAxiosAuth<
@@ -46,11 +48,11 @@ function adminDashboard() {
   }, [windowSize.width])
   useDocumentTitle('dashboard')
 
-  const goToLink = () => {
+  /* const goToLink = () => {
     if (windowSize.width < 768) {
       handleToogleMenu()
     }
-  }
+  } */
   return (
     <AdminDashBoard>
       {!loading ? (

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import AdminDashBoard from '../../../src/components/dashboard/AdminDashBoard'
+import { AdminDashBoard } from '../../../src/components/dashboard/AdminDashBoard'
 import { useRouter } from 'next/router'
 import { PymesResponseInterface } from '../../../src/interfaces/pymesResponseInterface'
 import useAxiosAuth from '../../../src/hooks/useAxios'
 import { Formik, Form, Field, FieldArray } from 'formik'
 import { Loading } from '../../../src/components/widgets/loadings/Loading'
 import { MapLocalization } from '../../../src/components/pymeDetails/MapLocalization'
-import { postAction, putAction } from '../../../src/provider/action/ActionAuthorization'
+import {
+  postAction,
+  putAction,
+} from '../../../src/provider/action/ActionAuthorization'
 import { validateStatus } from '../../../src/components/utils/utils'
 import { departamentos, socialNetworks } from '../../../src/data/infoData'
 import BoxFlex from '../../../src/components/boxes/BoxFlex'
@@ -14,35 +17,45 @@ import { FaTimesCircle, FaPlusCircle } from 'react-icons/fa'
 import { Button } from '../../../src/components/buttons/Button'
 import Image from 'next/image'
 const PymeDetails = () => {
+  const router = useRouter()
   const [loadingForm, setLoadingForm] = useState(false)
-  const [socialMedia, setSocialMedia] = useState([])
 
   const onSubmit = async (values: any) => {
     setLoadingForm(true)
-    postAction('/pymes/newPyme',{
+    postAction('/pymes/newPyme', {
       ...values,
-      verificado: values.verificado ? 'verificado' : 'no_verificado',
+      verificado: values.verify ? 'verificado' : 'no_verificado',
       categoria: 'que fueg gente xd',
-    }).then((res) => {
-      save(res)
-    }).catch((err) => {
-      console.log(err)
-      setLoadingForm(false)
     })
-   
+      .then((res) => {
+        save(res)
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('Error al agregar la pyme')
+        setLoadingForm(false)
+      })
   }
-  function save(values){
+  function save(values) {
     setLoadingForm(false)
-    if(validateStatus(values.status)){
+    if (validateStatus(values.status)) {
       alert('Pyme agregada correctamente')
+      router.push('/auth/adminDashboard')
+    } else {
+      alert('Error al agregar la pyme')
     }
   }
 
   return (
     <AdminDashBoard>
-      <Formik enableReinitialize={true} initialValues={{
-        redes_sociales: [],
-      }} onSubmit={onSubmit}>
+      <Formik
+        enableReinitialize={true}
+        initialValues={{
+          redes_sociales: [],
+          verify: false,
+        }}
+        onSubmit={onSubmit}
+      >
         {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
           <Form className="Form__pyme--container">
             <h3 className="Form__login--title ">Agregar Pyme</h3>
@@ -71,15 +84,16 @@ const PymeDetails = () => {
                 return <option value={departamento}>{departamento}</option>
               })}
             </Field>
-            <label className="switchBtn">
+            <label className="toggle">
               <Field
-                className="checkbox"
-                placeholder="Verificado"
                 name="verify"
+                className="toggle-checkbox"
                 type="checkbox"
-                disabled={loadingForm}
               />
-              <div className="slide round"></div>
+              <div className="toggle-switch"></div>
+              <span className="toggle-label">
+                {values.verify ? 'Verificado' : 'No verificado'}
+              </span>
             </label>
 
             <Field
