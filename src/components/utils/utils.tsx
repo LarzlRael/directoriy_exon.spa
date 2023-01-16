@@ -8,10 +8,9 @@ export const validateStatus = (status: any) => {
   return validateStatusCodes.includes(status)
 }
 
-export function processDrag(list: any[], order: string, id: any, content: any) {
-  console.log(list, order, id, content)
+export function processDrag(list: any[]) {
   let aux: { id: string; content: any }[] = []
-  if (validateArray(list)) {
+  /* if (validateArray(list)) {
     list
       .sort((a, b) => a[order] - b[order])
       .forEach((element: any) => {
@@ -20,6 +19,13 @@ export function processDrag(list: any[], order: string, id: any, content: any) {
           content: element[content],
         })
       })
-  }
-  return aux
+  } */
+  /* console.log(list) */
+  return list.map((element)=>{
+    return {
+      id: `${element.id}`,
+      content: element.content,
+    }
+  })
+  
 }

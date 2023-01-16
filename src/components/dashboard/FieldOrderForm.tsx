@@ -16,12 +16,11 @@ const FieldOrderForm = (props: any) => {
     order = 'order',
     id = 'fieldProcessStepId',
     name = 'label',
-    url = '/field/order',
+    url,
   } = props
   const [state, setState] = useState({
-    quotes: processDrag(fields, order, id, name),
+    quotes: processDrag(fields),
   })
-  console.log(state)
   const [load, setload] = useState(false)
 
   const OnSubmit = async () => {

@@ -266,9 +266,9 @@ const PymeDetails = () => {
                     return {
                       id: index,
                       content: url,
-                      order:index,
                     }
                   })}
+                  url={`pyme/changeOrderImage/${onePyme!._id}`}
                   order="order"
 
                 />

@@ -8,6 +8,7 @@ const DragList = ({ state, setState }: any) => {
     return result
   }
   function onDragEnd(result: any) {
+  
     if (!result.destination) {
       return
     }
@@ -20,9 +21,9 @@ const DragList = ({ state, setState }: any) => {
       result.destination.index,
     )
     setState({ quotes })
+    console.log(state)
   }
   function Quote({ quote, index }: any) {
-    console.log(quote,index)
     return (
       <Draggable draggableId={quote.id} index={index}>
         {(provided) => (
@@ -36,7 +37,14 @@ const DragList = ({ state, setState }: any) => {
               <span>
                 <strong>{index + 1}</strong>
               </span>
-              <span>{quote.content}</span>
+              {/* <span>{quote.content}</span> */}
+              <img
+                src={quote.content}
+                style={{
+                  width: '100px',
+                  height: '100px',
+                }}
+              />
             </div>
             <i className="fas fa-grip-lines"></i>
           </div>
@@ -51,7 +59,7 @@ const DragList = ({ state, setState }: any) => {
   })
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="list">
+      <Droppable droppableId="list" direction="vertical">
         {(provided) => (
           <div
             className="DragList__context"
