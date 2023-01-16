@@ -6,6 +6,7 @@ import { ReactElement } from 'react'
 export const ButtonStyle = styled.button<{
   textColor?: string
   backGroundColor?: string
+  margin?: string
 }>`
   background: ${({ backGroundColor }) =>
     backGroundColor ? backGroundColor : '#444752'};
@@ -17,6 +18,7 @@ export const ButtonStyle = styled.button<{
   align-content: center;
   justify-content: center;
   align-items: center;
+  margin: ${({ margin }) => margin};
   cursor: pointer;
   @media ${sizeMedia('xs_sm')} {
     padding: 0.7rem;
@@ -33,6 +35,7 @@ interface ButtonProps {
   background?: string
   textColor?: string
   type?: 'button' | 'submit'
+  margin?: string
 }
 export const Button = ({
   children,
@@ -41,6 +44,7 @@ export const Button = ({
   background,
   textColor,
   type = 'button',
+  margin = '0',
 }: ButtonProps) => {
   return (
     <ButtonStyle
@@ -48,9 +52,16 @@ export const Button = ({
       backGroundColor={background}
       onClick={onClick}
       textColor={textColor}
+      margin={margin}
     >
-      {icon}
       {children}
+      <div
+        style={{
+          marginLeft: '10px',
+        }}
+      />
+
+      {icon}
     </ButtonStyle>
   )
 }

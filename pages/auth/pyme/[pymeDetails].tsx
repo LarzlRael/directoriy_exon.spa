@@ -2,31 +2,50 @@ import React, { useEffect, useState } from 'react'
 import AdminDashBoard from '../../../src/components/dashboard/AdminDashBoard'
 import { useRouter } from 'next/router'
 import { PymesResponseInterface } from '../../../src/interfaces/pymesResponseInterface'
-import useAxiosAuth from '../../../src/hooks/useAxios'
 import { Formik, Form, Field, FieldArray } from 'formik'
-import { Loading } from '../../../src/components/widgets/loadings/Loading'
+import {
+  Loading,
+  LoadingExpanded,
+} from '../../../src/components/widgets/loadings/Loading'
 import { MapLocalization } from '../../../src/components/pymeDetails/MapLocalization'
-import { putAction } from '../../../src/provider/action/ActionAuthorization'
-import { validateStatus } from '../../../src/components/utils/utils'
+import {
+  getAction,
+  postAction,
+  putAction,
+} from '../../../src/provider/action/ActionAuthorization'
+import { validateStatus, processDrag } from '../../../src/components/utils/utils';
 import { departamentos, socialNetworks } from '../../../src/data/infoData'
+import BoxFlex from '../../../src/components/boxes/BoxFlex'
+import { FaTimesCircle, FaPlusCircle } from 'react-icons/fa'
+import { Button } from '../../../src/components/buttons/Button'
+import Image from 'next/image'
+import DropzoneInput from '../../../src/components/input/DropZone'
+import DragList from '../../../src/components/dragBoxex/DragList'
+import FieldOrderForm from '../../../src/components/dashboard/FieldOrderForm';
 
 const PymeDetails = () => {
   const router = useRouter()
   let { pymeDetails } = router.query
   /* const [url, seturl] = useState('') */
-  const { response: onePyme, loading, reload } = useAxiosAuth<
-  PymesResponseInterface
-  >({
-    url: `/pymes/${pymeDetails}`,
-    method: 'GET',
-  })
-
+  const [onePyme, setOnePyme] = useState<PymesResponseInterface | null>(null)
+  const [loading, setLoading] = useState(true)
   const [loadingForm, setLoadingForm] = useState(false)
-  const [socialMedia, setSocialMedia] = useState([])
 
+  const [files, setFilesToSend] = useState<any>()
+  
   useEffect(() => {
-    if (router.isReady) {
-      reload()
+    const getOnePyme = async () => {
+      setLoading(true)
+      const action: any = await getAction(
+        `http://localhost:4000/pymes/${pymeDetails}`,
+      )
+      if (validateStatus(action.status)) {
+        setOnePyme(action.data)
+        setLoading(false)
+      }
+    }
+    if (pymeDetails) {
+      getOnePyme()
     }
   }, [router.isReady])
 
@@ -37,37 +56,63 @@ const PymeDetails = () => {
       ...values,
       verificado: values.verify ? 'verificado' : 'no_verificado',
       categoria: 'xd',
+      localizacion: `${values.longitude},${values.latitude}`,
     })
     setLoadingForm(false)
     if (validateStatus(action.status)) {
-      reload()
       alert('Pyme actualizada')
     }
+  }
+  const uploadFiles = async () => {
+    const formData = new FormData()
+    console.log(files)
+    console.log(files.File)
+
+    formData.append('files', files.File)
+    console.log(formData.values)
+    setLoadingForm(true)
+    postAction(`/pymes/addedImage/${onePyme?._id}`, formData)
+      .then((res: any) => {
+        if (validateStatus(res.status)) {
+          alert('Imagen agregada')
+          setLoadingForm(false)
+        }
+      })
+      .catch((err: any) => {
+        console.log(err)
+        setLoadingForm(false)
+      })
   }
 
   return (
     <AdminDashBoard>
       {loading ? (
-        <Loading />
+        <LoadingExpanded />
       ) : (
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-          }}
-        >
+        <BoxFlex className="BoxFlex__pyme--container" direction="row">
           <Formik
             enableReinitialize={true}
             initialValues={{
               ...onePyme,
-              verify: onePyme.verificado == 'verificado' ? true : false,
-              longitude: parseFloat(onePyme.localizacion?.split(',')[0]!),
-              latitude: parseFloat(onePyme.localizacion?.split(',')[1]!),
+              verify: onePyme!.verificado == 'verificado' ? true : false,
+              longitude: parseFloat(onePyme!.localizacion?.split(',')[0]!),
+              latitude: parseFloat(onePyme!.localizacion?.split(',')[1]!),
             }}
             onSubmit={onSubmit}
           >
             {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
               <Form className="Form__pyme--container">
+                {onePyme!.profileImage && (
+                  <Image
+                    src={onePyme!.profileImage!}
+                    alt="profile image"
+                    width={75}
+                    height={75}
+                    style={{
+                      borderRadius: '100%',
+                    }}
+                  />
+                )}
                 <h3 className="Form__login--title ">Agregar Pyme</h3>
                 <Field
                   className="Form__input--pyme"
@@ -91,7 +136,11 @@ const PymeDetails = () => {
                   disabled={loadingForm}
                 >
                   {departamentos.map((departamento) => {
-                    return <option value={departamento}>{departamento}</option>
+                    return (
+                      <option value={departamento} key={departamento}>
+                        {departamento}
+                      </option>
+                    )
                   })}
                 </Field>
                 <label className="switchBtn">
@@ -159,51 +208,79 @@ const PymeDetails = () => {
                               >
                                 {socialNetworks.map((social) => {
                                   return (
-                                    <option value={social}>{social}</option>
+                                    <option value={social} key={social}>
+                                      {social}
+                                    </option>
                                   )
                                 })}
                               </Field>
                             </div>
-                            <div className="col">
+                            <BoxFlex
+                              className=""
+                              justify="space-between"
+                              direction="row"
+                            >
                               <label
                                 htmlFor={`redes_sociales.${index}.urlRedSocial`}
                               >
                                 URL
                               </label>
+                              <FaTimesCircle
+                                type="button"
+                                color="red"
+                                size={20}
+                                className="secondary"
+                                onClick={() => remove(index)}
+                              />
+                            </BoxFlex>
+                            <BoxFlex className={'xd'} direction="row">
                               <Field
                                 name={`redes_sociales.${index}.urlRedSocial`}
                                 placeholder="Ingrese el Url de la red social"
                                 type="text"
                                 className="Form__input--pyme"
                               />
-                            </div>
-                            <div className="col">
-                              <button
-                                type="button"
-                                className="secondary"
-                                onClick={() => remove(index)}
-                              >
-                                X
-                              </button>
-                            </div>
+                            </BoxFlex>
                           </div>
                         ))}
-                      <button
+                      <Button
                         type="button"
-                        className="secondary"
+                        margin="10px 0"
                         onClick={() => {
                           push({
                             nombre: '',
                             urlRedSocial: '',
                           })
                         }}
+                        icon={<FaPlusCircle size={20} />}
                       >
-                        Add Friendxd
-                      </button>
+                        Agregar Red social
+                      </Button>
                     </div>
                   )}
                 </FieldArray>
 
+                <FieldOrderForm
+                  id="xd"
+                  fields={onePyme!.urlImages.map((url,index) => {
+                    return {
+                      id: index,
+                      content: url,
+                      order:index,
+                    }
+                  })}
+                  order="order"
+
+                />
+                {onePyme!.urlImages.map((url) => (
+                  <a href={url} target="_blank">
+                    <img
+                      style={{ width: '100px', height: '100px' }}
+                      src={url}
+                      alt=""
+                    />
+                  </a>
+                ))}
                 {loadingForm ? (
                   <Loading />
                 ) : (
@@ -211,29 +288,24 @@ const PymeDetails = () => {
                     Guardar
                   </button>
                 )}
-                <img src={onePyme.profileImage} alt="" />
-                {onePyme.urlImages.map((url) => (
-                  <img
-                    style={{ width: '100px', height: '100px' }}
-                    src={url}
-                    alt=""
-                  />
-                ))}
-                {onePyme.redes_sociales!.map((red) => (
-                  <div>{red.nombre}</div>
-                ))}
-                {/* <MapLocalization
-                  localization={onePyme?.localizacion!}
-                  direction={onePyme?.direccion}
-                /> */}
               </Form>
             )}
           </Formik>
           {/* <MapLocalization
             localization={onePyme?.localizacion!}
-            direction={onePyme?.direccion}
+            direction={onePyme?.direccion!}
           /> */}
-        </div>
+          <BoxFlex className="" direction="column">
+            <DropzoneInput
+              uploadFiles={setFilesToSend}
+              name="File"
+              label="Subir archivo"
+            />
+            <Button icon={<p>Subir</p>} onClick={uploadFiles}>
+              Subir archivos
+            </Button>
+          </BoxFlex>
+        </BoxFlex>
       )}
     </AdminDashBoard>
   )

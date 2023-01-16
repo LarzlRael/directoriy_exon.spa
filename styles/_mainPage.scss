@@ -174,3 +174,49 @@ $width: 80%;
     margin: 10px 1rem;
   }
 }
+
+
+.DragList__Quote {
+  border: 1px solid var(--blue);
+  padding: 10px;
+  font-size: 1.4rem;
+  text-align: start;
+  border-radius: 5px;
+  background: var(--white);
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--gray);
+}
+.DragList__Quote i {
+  font-size: 1.8rem;
+  color: var(--blue);
+}
+.DragList__Quote .DragList__text {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.DragList__Quote .DragList__text strong {
+  color: var(--blue);
+}
+.DragList__context {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.ActionButton {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+@media screen and (max-width: 425px) {
+  .ActionButton {
+    flex-direction: column-reverse;
+    gap: 5px;
+  }
+}

@@ -15,9 +15,7 @@ import {
 } from '../../interfaces/pymesResponseInterface'
 import TimeAgo from 'javascript-time-ago'
 import es from 'javascript-time-ago/locale/es'
-interface ProfileProps {
-  pymeResponse: PymesResponseInterface
-}
+
 TimeAgo.addDefaultLocale(es)
 const timeAgo = new TimeAgo('es-ES')
 

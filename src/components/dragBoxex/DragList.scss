@@ -1,0 +1,31 @@
+.DragList__Quote {
+    border: 1px solid var(--blue);
+    padding: 10px;
+    font-size: 1.4rem;
+    text-align: start;
+    border-radius: 5px;
+    background: var(--white);
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--gray);
+  }
+  .DragList__Quote i {
+    font-size: 1.8rem;
+    color: var(--blue);
+  }
+  .DragList__Quote .DragList__text {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .DragList__Quote .DragList__text strong {
+    color: var(--blue);
+  }
+  .DragList__context {
+    display: flex;
+    flex-direction: column;
+  }
+  

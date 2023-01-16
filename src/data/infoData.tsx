@@ -89,8 +89,8 @@ export const links = [
     labelLink: 'Listado',
   },
   {
-    href: '/test3',
-    labelLink: 'Categorias',
+    href: 'auth/addPyme',
+    labelLink: 'Agregar Pyme',
   },
   {
     href: '/auth/login',
@@ -124,6 +124,11 @@ export const accountsLink: AccountsLinkInterface[] = [
       {
         title: 'Adminstrar Pymes',
         to: '/dashboard/actualizar',
+        icon: <MdFileUpload size={25} />,
+      },
+      {
+        title: 'Agregar Pyme',
+        to: '/auth/pyme/addPyme',
         icon: <MdFileUpload size={25} />,
       },
     ],

@@ -15,9 +15,12 @@ export const postAction = (url: string, body: any) => {
       })
   })
 }
-export const postEmptyAction = (axiosRequestConfig: AxiosRequestConfig) => {
+export const postEmptyAction = (url:string,body:any) => {
   return new Promise((resolve, eject) => {
-    HttpClient.postEmpty(axiosRequestConfig)
+    HttpClient.postEmpty({
+      url: url,
+      data: body,
+    })
       .then((response) => {
         resolve(response)
       })
