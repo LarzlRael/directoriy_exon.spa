@@ -368,7 +368,7 @@ const PymeDetails = () => {
                   label="Subir imagenes para la pyme"
                 />
                 {files != null && (
-                  <Button icon={<p>Subir</p>} onClick={uploadFiles}>
+                  <Button onClick={uploadFiles}>
                     Subir imagenes para la pyme
                   </Button>
                 )}

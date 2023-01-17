@@ -26,7 +26,6 @@ const FieldOrderForm = (props: any) => {
   const OnSubmit = async () => {
     try {
       setload(true)
-      console.log(state.quotes)
       const body = state.quotes.map((quote)=>{
         return quote.content
       })

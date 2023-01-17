@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { useDocumentTitle } from '../../../src/hooks/useDocumentTitle'
-import { Loading } from '../../../src/components/widgets/loadings/Loading'
+import { LoadingExpanded } from '../../../src/components/widgets/loadings/Loading'
 import { Indicator } from '../../../src/components/Indicator'
 import { capitalizeFirstLetter } from '../../../src/components/utils/utils'
 
@@ -24,7 +24,7 @@ const PymeDetails = () => {
   let { pymedetail } = router.query
 
   const { response: onePyme, loading, reload } = useAxiosAuth<
-  PymesResponseInterface
+    PymesResponseInterface
   >({
     url: `/pymes/${pymedetail}`,
     method: 'GET',
@@ -41,7 +41,7 @@ const PymeDetails = () => {
   return (
     <>
       {loading ? (
-        <Loading />
+        <LoadingExpanded />
       ) : onePyme !== null ? (
         <div
           style={{
@@ -108,9 +108,7 @@ const PymeDetails = () => {
               )}
             </div>
 
-            <Profile
-              {...onePyme}
-            />
+            <Profile {...onePyme} />
           </div>
         </div>
       ) : (

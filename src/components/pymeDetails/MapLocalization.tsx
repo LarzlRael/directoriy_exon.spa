@@ -3,6 +3,7 @@ import { IoMapOutline } from 'react-icons/io5'
 
 import ReactMapGL from 'react-map-gl'
 import { CardDescription } from '../widgets/card/'
+import { capitalizeFirstLetter } from '../utils/utils'
 
 interface localizationProps {
   localization: string
@@ -23,7 +24,6 @@ export const MapLocalization = ({
     latitude: parseFloat(coords[0]),
     zoom: 16,
   })
-  console.log(viewport.longitude, viewport.latitude);
   const mapboxglAccessToken = process.env.NEXT_PUBLIC_MAPBOX_KEY
 
   return (
@@ -31,7 +31,7 @@ export const MapLocalization = ({
       <div className="flex info-category">
         <div className="flex icon-info">
           <div className="icono">
-            <IoMapOutline width="20px" height="20px" />
+            <IoMapOutline size={20} />
           </div>
           <label
             htmlFor=""
@@ -43,7 +43,7 @@ export const MapLocalization = ({
           </label>
         </div>
         <div className="spacer"></div>
-        <div className="">{direction}</div>
+        <div className="">{capitalizeFirstLetter(direction)}</div>
       </div>
 
       <div

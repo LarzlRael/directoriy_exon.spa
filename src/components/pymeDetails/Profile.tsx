@@ -27,13 +27,6 @@ export const Profile = ({
   redes_sociales,
   createdAt,
 }: PymesResponseInterface) => {
-  console.log(
-    '\nnombre: ' + nombre,
-    '\nurlNegocio: ' + urlNegocio,
-    '\npropietario: ' + propietario,
-    '\nurlProfile: ' + profileImage,
-    '\nredesSociales: ' + redes_sociales,
-  )
   return (
     <div className="informationPlace">
       <div className="information">

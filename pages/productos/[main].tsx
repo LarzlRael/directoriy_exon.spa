@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid'
 import styled from 'styled-components'
 import { useDocumentTitle } from '../../src/hooks/useDocumentTitle'
 import useAxiosAuth from '../../src/hooks/useAxios'
-import { PymeInterfaceResponse } from '../../src/interfaces/pymeResponse'
 import { Indicator } from '../../src/components/Indicator'
 import { Formik, Form, Field } from 'formik'
 import { departamentos } from '../../src/data/infoData'
@@ -16,8 +13,8 @@ import { Label } from '../../src/components/text/'
 import { Loading } from '../../src/components/widgets/loadings/Loading'
 import { sizeMedia } from '../../styles/mediaQuerys'
 import { Button } from '../../src/components/buttons/Button'
-import { Header } from '../../src/layout/Header'
 import { HeaderBlack } from '../../src/layout/HeaderBlack'
+import { PymesResponseInterface } from '../../src/interfaces/pymesResponseInterface'
 
 interface SingleLocationProps {}
 
@@ -36,15 +33,15 @@ const SingleLocation = (props: SingleLocationProps) => {
   const [url, setUrl] = useState('/pymes')
 
   const { response: allPymes, loading, reload } = useAxiosAuth<
-    PymeInterfaceResponse[]
+    PymesResponseInterface[]
   >({
     url: url,
     method: 'GET',
   })
   const preconfigArray = (
-    array: PymeInterfaceResponse[],
-  ): PymeInterfaceResponse[] => {
-    return array?.map((item: PymeInterfaceResponse) => {
+    array: PymesResponseInterface[],
+  ): PymesResponseInterface[] => {
+    return array?.map((item) => {
       if (item.urlImages.length !== 0) {
         const imagesConverted = item.urlImages.map((image, i) => {
           const splitString = image.split('upload/')
@@ -83,7 +80,6 @@ const SingleLocation = (props: SingleLocationProps) => {
   return (
     <div>
       <HeaderBlack darkMenu={true} sticky={true} />
-
       <Indicator {...props} />
 
       <Formik initialValues={initialValues} onSubmit={onSubmit}>

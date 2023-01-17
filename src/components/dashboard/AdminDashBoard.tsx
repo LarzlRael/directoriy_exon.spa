@@ -8,15 +8,24 @@ import { useWindowSize } from '../../../src/hooks/useWindows'
 import { NavLink } from '../../../src/components/text/NavLink'
 import { IconContext } from 'react-icons'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../store/store'
+import { logOutSession } from '../../store/slices/slices'
+import { useRouter } from 'next/router'
 
 interface AdminDashBoardProps {
   children: React.ReactNode
 }
 export const AdminDashBoard = ({ children }: AdminDashBoardProps) => {
+  const { isLogged } = useSelector((state: RootState) => state.authSlice)
   const [openMenu, setOpenMenu] = useState(false)
-  /* const { logOut } = useContext(AuthAdminContext) */
 
+  /* hooks */
+  const router = useRouter()
+  const dispatch = useDispatch()
   const { windowSize } = useWindowSize()
+
+  /* Functions */
   const handleToogleMenu = () => {
     setOpenMenu(!openMenu)
   }
@@ -27,6 +36,14 @@ export const AdminDashBoard = ({ children }: AdminDashBoardProps) => {
       setOpenMenu(false)
     }
   }, [windowSize.width])
+
+  /* Logout effet */
+  useEffect(() => {
+    if (!isLogged) {
+      router.push('/auth/login')
+    }
+  }, [isLogged])
+
   useDocumentTitle('dashboard')
 
   const goToLink = () => {
@@ -48,7 +65,11 @@ export const AdminDashBoard = ({ children }: AdminDashBoardProps) => {
         <h4>Panel de administracion</h4>
       </div>
       <div className="AdminDashBoard">
-        <div className={`AdminDashBoard__dash ${openMenu ? 'open-menu' : 'close-menu'}`}>
+        <div
+          className={`AdminDashBoard__dash ${
+            openMenu ? 'open-menu' : 'close-menu'
+          }`}
+        >
           <div className="profile-image">
             <img
               className="profile-image-img"
@@ -62,30 +83,30 @@ export const AdminDashBoard = ({ children }: AdminDashBoardProps) => {
               <div key={uuidv4()}>
                 <span className="title-dash">{title_group}</span>
 
-                {items.map(({ to, icon, title }) => (
-                  <NavLink
-                    key={uuidv4()}
-                    activeClassName="active"
-                    onClick={goToLink}
-                    href={to}
-                  >
-                    <div className="AdminDashBoard__dash--item">
-                      {icon}
-                      <span
-                        style={{
-                          marginLeft: '10px',
-                        }}
-                      >
-                        {title}
-                      </span>
-                    </div>
-                  </NavLink>
+                {items.map(({ to, icon, title }, index) => (
+                  <div onClick={goToLink} key={index}>
+                    <NavLink key={uuidv4()} activeClassName="active" href={to}>
+                      <div className="AdminDashBoard__dash--item">
+                        {icon}
+                        <span
+                          style={{
+                            marginLeft: '10px',
+                          }}
+                        >
+                          {title}
+                        </span>
+                      </div>
+                    </NavLink>
+                  </div>
                 ))}
               </div>
             ))}
           </div>
           <span className="title-dash">Empleados</span>
-          <div className="AdminDashBoard__dash--group">
+          <div
+            className="AdminDashBoard__dash--group"
+            onClick={() => dispatch(logOutSession)}
+          >
             <ul className="AdminDashBoard__dash--item">Salir</ul>
           </div>
         </div>

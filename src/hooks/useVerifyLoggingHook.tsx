@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { postAction } from '../provider/action/ActionAuthorization'
 import { useDispatch } from 'react-redux'
 import { startSession, logOutSession } from '../store/slices/slices'
@@ -13,7 +13,6 @@ export const useVerifyLogginHook = () => {
       .then((res: any) => {
         if (validateStatus(res.status)) {
           dispatch(startSession({ token: res.data.accessToken }))
-          console.log(res.data)
           window.localStorage.setItem('token', res.data.accessToken)
           router.push('/auth/adminDashboard')
         } else {

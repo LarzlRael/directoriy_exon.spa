@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { IoChevronBack } from 'react-icons/io5'
 
 /* import { useLocation, useParams } from 'react-router'
@@ -8,6 +8,7 @@ import { sizeMedia } from '../../styles/mediaQuerys'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store/store'
+
 const Label = styled.label<{
   fontSize?: string
   marginbottom?: string
@@ -43,10 +44,16 @@ const Bread = styled.div`
 `
 
 export const Indicator = () => {
-  const { indicator } = useSelector((state: RootState) => state.counter)
+  const [indicator, setindicator] = useState<any>()
+  useEffect(() => {
+    const localStorageItem = JSON.parse(
+      localStorage.getItem('indicator') || '{}',
+    )
+    setindicator(localStorageItem)
+  }, [])
 
   return (
-    <BreadContainer backGroundImage={indicator.urlImageIndicator}>
+    <BreadContainer backGroundImage={indicator?.urlImageIndicator}>
       <Bread className="bread">
         <div className="pointer">
           <IoChevronBack
@@ -56,10 +63,10 @@ export const Indicator = () => {
           />
         </div>
         <Label color="white" fontSize="2.3rem">
-          {indicator.titleIndicator}
+          {indicator?.titleIndicator}
         </Label>
         <Label fontSize=".9rem" color="white">
-          Home / {indicator.titleIndicator}
+          Inicio / {indicator?.titleIndicator}
         </Label>
       </Bread>
     </BreadContainer>

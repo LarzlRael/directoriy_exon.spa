@@ -21,7 +21,6 @@ const DragList = ({ state, setState }: any) => {
       result.destination.index,
     )
     setState({ quotes })
-    console.log(state)
   }
   function Quote({ quote, index }: any) {
     return (

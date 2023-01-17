@@ -7,7 +7,7 @@ import {
 } from 'react-icons/io5'
 
 import {
-  PymeInterfaceResponse,
+  PymesResponseInterface,
   RedesSociales,
 } from '../../../interfaces/pymesResponseInterface'
 import { Label } from '../../text'
@@ -15,14 +15,13 @@ import { capitalizeFirstLetter } from '../../utils/utils'
 import Image from 'next/image'
 
 interface PymeCardProps {
-  pymeInterfaceResponse: PymeInterfaceResponse
+  pymeInterfaceResponse: PymesResponseInterface
   isAdmin: boolean
 }
 export const PymeCard = ({
   pymeInterfaceResponse: { nombre, urlImages, redes_sociales, verificado, _id },
   isAdmin,
 }: PymeCardProps) => {
-  console.log(isAdmin)
   return (
     <div
       className={`single-card flex ${

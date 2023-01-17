@@ -10,7 +10,7 @@ import { useWindowSize } from '../hooks/useWindows'
 import Link from 'next/link'
 import { Label } from '../components/text'
 import Image from 'next/image'
-import { links } from '../data/infoData';
+import { links } from '../data/infoData'
 
 const HeaderContainer = styled.div`
   position: relative;
@@ -156,7 +156,9 @@ export const HeaderBlack = ({ darkMenu = false, sticky }: PropsHeader) => {
         {/* todo revisar */}
         <div
           className={`Header-links  ${
-            !darkMenuS && changeBackground ? 'Header-links--white' : 'Header-links--black'
+            !darkMenuS && changeBackground
+              ? 'Header-links--white'
+              : 'Header-links--black'
           }  ${menu ? 'open-menu' : 'close-menu'}`}
         >
           {/* <Link onClick={linkClickeable} href="/333">
@@ -173,10 +175,12 @@ export const HeaderBlack = ({ darkMenu = false, sticky }: PropsHeader) => {
           </Link> */}
           {links.map((link, index) => {
             return (
-              <div className="link-clickeable" onClick={linkClickeable}>
-                <Link href={link.href} key={link.labelLink}>
-                  {link.labelLink}
-                </Link>
+              <div
+                className="link-clickeable"
+                onClick={linkClickeable}
+                key={link.labelLink}
+              >
+                <Link href={link.href}>{link.labelLink}</Link>
               </div>
             )
           })}
