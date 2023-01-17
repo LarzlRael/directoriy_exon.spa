@@ -1,0 +1,99 @@
+.form-control {
+  text-align: start;
+  margin: 10px 15px 10px 0;
+  width: 100%;
+}
+.form-control label {
+  font-size: 1.2rem;
+  color: gray;
+}
+.form-control input {
+  border: 1px solid #b1b1b1;
+  outline: none;
+  background: none;
+  width: 100%;
+  font-size: 1.6rem;
+  height: 25px;
+  border-radius: 5px;
+  background: var(--white);
+  padding: 0 5px;
+}
+.form-control .PhoneInput {
+  margin: 0;
+}
+.form-control.form-errorControl input {
+  border: 2.5px solid #c93f3f;
+  color: #c93f3f;
+}
+.form-control input[type='time']::-webkit-datetime-edit-ampm-field {
+  display: none;
+}
+.form-control input[type='time']::-webkit-clear-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  margin: -10px;
+}
+.form-control input:focus {
+  border: 1px solid var(--orange2);
+  background-color: #dd6b2967;
+  color: var(--black);
+}
+.form-control input:disabled {
+  /* border: 1px solid var(--orange2); */
+  background-color: rgb(219, 219, 219);
+}
+
+.error {
+  margin: 5px 0;
+  color: #d57272;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+/* .error::after {
+  content: "*";
+} */
+.form-control select {
+  border: 1px solid #b1b1b1;
+  outline: none;
+  background: var(--white);
+  width: 100%;
+  font-size: 1.6rem;
+  height: 27px;
+  border-radius: 5px;
+}
+.form-control select:disabled {
+  background-color: rgb(219, 219, 219);
+  color: var(--black);
+}
+/* .RadioButtons {
+  text-align: start;
+}
+.RadioButtons__input {
+  width: 90%;
+  margin: 0 auto;
+}
+.RadioButtons .RadioButtons__input label {
+  position: relative;
+  padding: 1em 2em;
+  font-size: 1.6rem;
+  transition: all 0.25s linear; 
+}*/
+.Input__check {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}
+.Input__check input {
+  margin: 0;
+  width: auto;
+}
+.formInput__grid {
+  display: grid;
+  grid-template: auto / 1fr 1fr;
+  row-gap: 5px;
+}

@@ -1,0 +1,23 @@
+.form-control.DatePicker .react-datepicker {
+  font-size: 1rem;
+  transform: scale(1.3) translate(20px, 18px);
+  font-family: 'Spartan', sans-serif;
+}
+.form-control.DatePicker {
+  margin: 0;
+  width: auto;
+}
+.form-control.DatePicker input {
+  height: auto;
+  padding: 5px 0 5px 10px;
+}
+.form-control.DatePicker .react-datepicker__input-container {
+  width: auto;
+}
+.DatePicker .react-datepicker__input-container button {
+  right: -12px;
+}
+.form-control.DatePicker {
+  display: flex;
+  flex-direction: column;
+}

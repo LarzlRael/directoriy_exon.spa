@@ -1,0 +1,51 @@
+.RadioButtons {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.RadioButtons__img {
+  margin: 0 auto;
+}
+.RadioButtons__img img {
+  height: 120px;
+  border-radius: 5px;
+}
+.RadioButtons__input input {
+  border: none;
+  display: none;
+}
+
+.RadioButtons__input label {
+  display: inline-block;
+  padding: 10px 10px 5px;
+  border: 1px solid gray;
+  width: 98%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.6rem;
+}
+.RadioButtons__input label img {
+  height: 120px;
+  border-radius: 5px;
+}
+.RadioButtons__input label input {
+  position: absolute;
+  display: none;
+}
+
+.RadioButtons__input label:hover {
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.RadioButtons__input input[type='radio']:checked + label {
+  background: var(--green);
+  color: var(--white);
+  border: 1px solid var(--green);
+}
+@media screen and (max-width: 768px) {
+  .RadioButtons__input label {
+    width: 96%;
+  }
+}

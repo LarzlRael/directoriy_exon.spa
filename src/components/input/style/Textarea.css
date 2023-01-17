@@ -1,0 +1,23 @@
+.Textarea {
+  text-align: start;
+  padding: 0 20px 0 10px;
+}
+.Textarea label {
+  font-size: 1.2rem;
+  color: gray;
+}
+.Textarea textarea {
+  width: 100%;
+  max-width: 100%;
+  outline: none;
+  background: none;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  background: var(--white);
+  padding: 5px;
+}
+.Textarea .error {
+  margin-bottom: 10px;
+  color: #d57272;
+  font-size: 1.2rem;
+}
