@@ -7,6 +7,7 @@ import {
   IoLogoWhatsapp,
   IoLogoInstagram,
 } from 'react-icons/io5'
+import { FaGlobe } from 'react-icons/fa'
 
 import {
   PymesResponseInterface,
@@ -27,6 +28,7 @@ export const Profile = ({
   profileImage,
   redes_sociales,
   createdAt,
+  email,
 }: PymesResponseInterface) => {
   return (
     <div className="informationPlace">
@@ -45,7 +47,7 @@ export const Profile = ({
           </div>
 
           <div className="info-profile flex">
-            <BoxFlex className="" direction="row">
+            <BoxFlex direction="row">
               <Image
                 width={60}
                 height={60}
@@ -70,7 +72,7 @@ export const Profile = ({
           <div className="contact">
             {urlNegocio && (
               <div className="icon flex">
-                <IoMailOutline width="20px" height="20px" />
+                <FaGlobe size={25} />
                 <a
                   href={urlNegocio}
                   target="_blank"
@@ -86,17 +88,22 @@ export const Profile = ({
               </div>
             )}
 
+            <div className="flex">
+              <IoMailOutline size={25} />
+              <Label fontSize="16px" color="#202428" margin="0 0 0 0.5rem">
+                {email}
+              </Label>
+            </div>
             {propietario && (
               <Label fontSize="14px" color="#202428">
                 {propietario}
               </Label>
             )}
 
-            <div
-              className="social-media flex pointer"
+            <BoxFlex
+              direction="row"
               style={{
                 marginTop: '1rem',
-                justifyContent: 'space-evenly',
               }}
             >
               {redes_sociales?.map((redSocial) => (
@@ -105,7 +112,7 @@ export const Profile = ({
                   <label htmlFor="">{redSocial.nombre}</label>
                 </BoxFlex>
               ))}
-            </div>
+            </BoxFlex>
           </div>
         </div>
       </div>

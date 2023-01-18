@@ -107,6 +107,12 @@
     }
   }
 }
+.Form__text-error {
+  display: block;
+  color: red;
+  font-size: 0.8rem;
+  padding: 0.5rem 0;
+}
 
 .button-login {
   display: block;
@@ -353,7 +359,11 @@ input[type='file'] {
   border-radius: 5px;
   margin: 0.5rem 0;
 }
-
+.Form__label--pyme {
+  font-size: 0.9rem;
+  color: #424869;
+  display: block;
+}
 .switchBtn {
   position: relative;
   display: inline-block;

@@ -20,7 +20,6 @@ const BoxFlexStyle = styled.div<{
     flex-direction: ${(props) => props.direction};
     gap: 5px;
     align-items: ${(props) => (props.alignItems ? props.alignItems : 'center')};
-
   }
 `
 interface BoxFlexI {
@@ -40,6 +39,7 @@ interface BoxFlexI {
   margin?: string
   alignItems?: 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'baseline'
   width?: string
+  style?: React.CSSProperties
 }
 const BoxFlex = (props: BoxFlexI) => {
   const {
@@ -51,10 +51,12 @@ const BoxFlex = (props: BoxFlexI) => {
     wrap = 'wrap',
     alignItems = 'center',
     margin = '',
-    width
+    width,
+    style,
   } = props
   return (
     <BoxFlexStyle
+      style={style}
       className={className}
       justify={justify}
       gap={gap}

@@ -23,6 +23,7 @@ import {
   FaTrashAlt,
   FaEye,
   FaEyeSlash,
+  FaFileImport,
 } from 'react-icons/fa'
 import { Button } from '../../../src/components/buttons/Button'
 import Image from 'next/image'
@@ -30,7 +31,6 @@ import DropzoneInput from '../../../src/components/input/DropZone'
 import FieldOrderForm from '../../../src/components/dashboard/FieldOrderForm'
 import { validateArray } from '../../../src/components/utils/validation/validation'
 import { H2 } from '../../../src/components/text'
-
 
 const PymeDetails = () => {
   const router = useRouter()
@@ -41,7 +41,8 @@ const PymeDetails = () => {
   const [loadingForm, setLoadingForm] = useState(false)
 
   const [files, setFilesToSend] = useState<any>()
-  const [profileImage, setProfileImage] = useState<any>()
+  const [name, setname] = useState(null)
+  const [imgPreview, setImgPreview] = useState<any>()
 
   const getOnePyme = async () => {
     setLoading(true)
@@ -50,9 +51,26 @@ const PymeDetails = () => {
     )
     if (validateStatus(action.status)) {
       setOnePyme(action.data)
+      setImgPreview(action.data.profileImage)
       setLoading(false)
     }
   }
+
+  const handleImageChange = (e) => {
+    const selected = e.target.files[0]
+    setname(selected)
+    const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/jpg']
+    if (selected && ALLOWED_TYPES.includes(selected.type)) {
+      let reader = new FileReader()
+      reader.onloadend = () => {
+        setImgPreview(reader.result)
+      }
+      reader.readAsDataURL(selected)
+    } else {
+      console.log('file not suport')
+    }
+  }
+
   useEffect(() => {
     if (pymeDetails) {
       getOnePyme()
@@ -84,7 +102,7 @@ const PymeDetails = () => {
       alert('Error al actualizar')
     }
   }
-  const uploadFiles = async () => {
+  async function uploadFiles() {
     const formData = new FormData()
 
     formData.append('files', files.File)
@@ -104,7 +122,7 @@ const PymeDetails = () => {
   }
   const uploadProfileImage = async () => {
     const formData = new FormData()
-    formData.append('file', profileImage.File)
+    formData.append('file', name!)
     setLoadingForm(true)
     putAction(`/pymes/addProfile/${onePyme?._id}`, formData)
       .then((res: any) => {
@@ -139,15 +157,28 @@ const PymeDetails = () => {
             alignItems="flex-start"
           >
             {onePyme!.profileImage && (
-              <Image
-                src={onePyme!.profileImage!}
-                alt="profile image"
-                width={75}
-                height={75}
-                style={{
-                  borderRadius: '100%',
-                }}
-              />
+              <BoxFlex>
+                <Image
+                  src={imgPreview}
+                  alt="profile image"
+                  width={75}
+                  height={75}
+                  style={{
+                    borderRadius: '100%',
+                  }}
+                />
+                <input
+                  type="file"
+                  id="inputFile"
+                  onChange={handleImageChange}
+                />
+                <div className="label">
+                  <label htmlFor="inputFile" className="imageUp">
+                    Seleccionar imagen
+                    <FaFileImport />
+                  </label>
+                </div>
+              </BoxFlex>
             )}
             <Formik
               enableReinitialize={true}
@@ -378,6 +409,7 @@ const PymeDetails = () => {
                   name="File"
                   label="Subir imagenes para la pyme"
                 />
+
                 {files != null && (
                   <Button onClick={uploadFiles}>
                     Subir imagenes para la pyme
@@ -386,7 +418,7 @@ const PymeDetails = () => {
               </BoxFlex>
 
               <BoxFlex className="" direction="column">
-                <DropzoneInput
+                {/* <DropzoneInput
                   uploadFiles={setProfileImage}
                   name="File"
                   label="Subir imagen de perfil"
@@ -395,7 +427,7 @@ const PymeDetails = () => {
                   <Button icon={<p>Subir</p>} onClick={uploadProfileImage}>
                     Subir imagen de perfil
                   </Button>
-                )}
+                )} */}
               </BoxFlex>
             </BoxFlex>
           </BoxFlex>
@@ -414,7 +446,7 @@ interface TitleAppbarProps {
 }
 const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
   const router = useRouter()
-  function deletePyme () {
+  function deletePyme() {
     if (confirm('¿Estas seguro de eliminar esta pyme?')) {
       deleteAction(`/pymes/deletePyme/${id}`)
         .then((res: any) => {
@@ -428,9 +460,11 @@ const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
         })
     }
   }
-  function changeVisibility () {
-    if (confirm('¿Estás seguro de cambiar el estado de visibilidad de la pyme?')) {
-      putAction(`/pymes/changeVisibility/${id}`,{})
+  function changeVisibility() {
+    if (
+      confirm('¿Estás seguro de cambiar el estado de visibilidad de la pyme?')
+    ) {
+      putAction(`/pymes/changeVisibility/${id}`, {})
         .then((res: any) => {
           if (validateStatus(res.status)) {
             alert('La pyma ha cambiado de estado')

@@ -16,6 +16,9 @@ import BoxFlex from '../../../src/components/boxes/BoxFlex'
 import { FaTimesCircle, FaPlusCircle } from 'react-icons/fa'
 import { Button } from '../../../src/components/buttons/Button'
 import Image from 'next/image'
+import { Input, Switch, Select } from '../../../src/components/forms/'
+import * as Yup from 'yup'
+
 const PymeDetails = () => {
   const router = useRouter()
   const [loadingForm, setLoadingForm] = useState(false)
@@ -55,36 +58,52 @@ const PymeDetails = () => {
           verify: false,
         }}
         onSubmit={onSubmit}
+        validationSchema={Yup.object({
+          nombre: Yup.string().required('El nombre es requerido'),
+          propietario: Yup.string().required(
+            'El nombre del propietario es requerido',
+          ),
+        })}
       >
-        {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
+        {({ setFieldValue, setFieldTouched, values }) => (
           <Form className="Form__pyme--container">
             <h3 className="Form__login--title ">Agregar Pyme</h3>
-            <Field
-              className="Form__input--pyme"
+            <Input
+              label="Nombre del negocio"
               placeholder="Nombre del negocio"
               name="nombre"
               type="text"
               disabled={loadingForm}
             />
-            <Field
+
+            <Input
+              placeholder="Propietario"
+              name="propietario"
+              type="text"
+              label="Nombre del propietario"
+            />
+            {/*  <Field
               className="Form__input--pyme"
               placeholder="Propietario"
               name="propietario"
               type="text"
               disabled={loadingForm}
-            />
+            /> */}
 
-            <Field
-              as="select"
+            <Select
+              label="Departamento"
               name="departamento"
-              className="Form__input--pyme"
               disabled={loadingForm}
             >
               {departamentos.map((departamento) => {
-                return <option value={departamento}>{departamento}</option>
+                return (
+                  <option key={departamento} value={departamento}>
+                    {departamento}
+                  </option>
+                )
               })}
-            </Field>
-            <label className="toggle">
+            </Select>
+            {/* <label className="toggle">
               <Field
                 name="verify"
                 className="toggle-checkbox"
@@ -94,28 +113,32 @@ const PymeDetails = () => {
               <span className="toggle-label">
                 {values.verify ? 'Verificado' : 'No verificado'}
               </span>
-            </label>
+            </label> */}
+            <Switch label="Verificado" name="verify" />
 
-            <Field
-              className="Form__input--pyme"
-              placeholder="Telefono"
+            <Input
+              label="Teléfono"
+              placeholder="Ingrese teléfono"
               name="telefono"
               type="text"
               disabled={loadingForm}
             />
-            <Field
-              className="Form__input--pyme"
+
+            <Input
+              label="Correo electronico"
               placeholder="Correo electronico"
               name="email"
+              type="email"
               disabled={loadingForm}
             />
-            <Field
-              className="Form__input--pyme"
+            <Input
+              label="Dirección"
               placeholder="Dirección"
               name="direccion"
               disabled={loadingForm}
             />
-            <Field
+            <Input
+              label="Ingrese descripcion"
               className="Form__input--pyme"
               placeholder="Descripcion"
               name="description"
