@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 const BoxFlexStyle = styled.div<{
-  className: string
   justify: string
   gap: string
   direction: string
@@ -37,7 +36,7 @@ interface BoxFlexI {
   gap?: string
   direction?: 'column' | 'row'
   wrap?: 'wrap' | 'nowrap'
-  className: string
+  className?: string
   margin?: string
   alignItems?: 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'baseline'
   width?: string

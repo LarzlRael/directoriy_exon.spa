@@ -11,6 +11,7 @@ export interface PymesResponseInterface {
   redes_sociales: RedesSociales[];
   __v:            number;
   profileImage?:  string;
+  visible?:       boolean;
   categoria?:     string;
   departamento?:  string;
   propietario?:   string;

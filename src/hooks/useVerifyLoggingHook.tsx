@@ -14,7 +14,7 @@ export const useVerifyLogginHook = () => {
         if (validateStatus(res.status)) {
           dispatch(startSession({ token: res.data.accessToken }))
           window.localStorage.setItem('token', res.data.accessToken)
-          router.push('/auth/adminDashboard')
+          /* router.push('/auth/adminDashboard') */
         } else {
           dispatch(logOutSession())
         }

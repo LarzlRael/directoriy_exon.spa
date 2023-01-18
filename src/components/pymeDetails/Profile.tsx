@@ -8,13 +8,14 @@ import {
   IoLogoInstagram,
 } from 'react-icons/io5'
 
-import { H2 } from '../text/H2'
 import {
   PymesResponseInterface,
   RedesSociales,
 } from '../../interfaces/pymesResponseInterface'
 import TimeAgo from 'javascript-time-ago'
 import es from 'javascript-time-ago/locale/es'
+import BoxFlex from '../boxes/BoxFlex'
+import { P, H2, Label } from '../text'
 
 TimeAgo.addDefaultLocale(es)
 const timeAgo = new TimeAgo('es-ES')
@@ -31,23 +32,23 @@ export const Profile = ({
     <div className="informationPlace">
       <div className="information">
         <div>
-          <label className="title-content">Informacion de autor</label>
+          <label className="title-content">Informacion acerca de la PYME</label>
         </div>
 
         <div className="border-box profile">
           <div className="heart pointer">
             <IoHeart width="40px" height="40px" color="#ED4956" />
             {/*  <Recaptcha
-                                    sitekey="6LeNLlwbAAAAAIcmdcPPXIlukfpWeRN0bNOT7_xo"
-                                    render="explicit"
+                    sitekey="6LeNLlwbAAAAAIcmdcPPXIlukfpWeRN0bNOT7_xo"
+                    render="explicit"
                                 /> */}
           </div>
 
           <div className="info-profile flex">
-            <div className="image">
+            <BoxFlex className="" direction="row">
               <Image
-                width={50}
-                height={50}
+                width={60}
+                height={60}
                 src={
                   profileImage
                     ? profileImage
@@ -55,48 +56,41 @@ export const Profile = ({
                 }
                 style={{
                   borderRadius: '100%',
-
-                  /* marginLeft: '1rem', */
                 }}
                 alt="profile"
               />
-            </div>
-
-            {createdAt && (
               <div className="nameAndCategory">
-                <label htmlFor="">{nombre}</label>
-                <p
-                  style={{
-                    fontSize: '14px',
-                  }}
-                >
-                  {(timeAgo.format(new Date(createdAt)))}
-                </p>
+                <H2 fontSize="20px">{nombre}</H2>
+                {createdAt && (
+                  <P fontSize="12px">{timeAgo.format(new Date(createdAt))}</P>
+                )}
               </div>
-            )}
+            </BoxFlex>
           </div>
           <div className="contact">
             {urlNegocio && (
               <div className="icon flex">
                 <IoMailOutline width="20px" height="20px" />
-                <label
+                <a
+                  href={urlNegocio}
+                  target="_blank"
                   style={{
                     marginLeft: '0.5rem',
+                    marginBottom: '0.5rem',
+                    textDecoration: 'none',
+                    color: '#202428',
                   }}
                 >
                   {urlNegocio}
-                </label>
+                </a>
               </div>
             )}
-            <a
-              href="https://demo.directorist.com/plugin/demo-one/directory/the-british-museum/"
-              style={{
-                textDecoration: 'none',
-                color: '#202428',
-              }}
-            >
-              {propietario ? propietario : 'Propietario'}
-            </a>
+
+            {propietario && (
+              <Label fontSize="14px" color="#202428">
+                {propietario}
+              </Label>
+            )}
 
             <div
               className="social-media flex pointer"
@@ -105,13 +99,11 @@ export const Profile = ({
                 justifyContent: 'space-evenly',
               }}
             >
-              {redes_sociales?.map(({ nombre, _id, urlRedSocial }) => (
-                <SocialLink
-                  nombre={nombre}
-                  _id={_id}
-                  key={_id}
-                  urlRedSocial={urlRedSocial}
-                />
+              {redes_sociales?.map((redSocial) => (
+                <BoxFlex gap="0px" key={redSocial._id}>
+                  <SocialLink {...redSocial} />
+                  <label htmlFor="">{redSocial.nombre}</label>
+                </BoxFlex>
               ))}
             </div>
           </div>
@@ -126,17 +118,17 @@ const SocialLink = ({ nombre, urlRedSocial }: RedesSociales) => {
     case 'Instagram':
       return (
         <a href={urlRedSocial} target="_blank" rel="noopener noreferrer">
-          <IoLogoInstagram color="#C13584" width="35px" height="35px" />
+          <IoLogoInstagram color="#C13584" size={30} />
         </a>
       )
     case 'Facebook':
       return (
         <a href={urlRedSocial} target="_blank" rel="noopener noreferrer">
-          <IoLogoFacebook color="#3b5998" width="35px" height="35px" />
+          <IoLogoFacebook color="#3b5998" size={30} />
         </a>
       )
     case 'Whatsapp':
-      return <IoLogoWhatsapp color="#25D366" width="35px" height="35px" />
+      return <IoLogoWhatsapp color="#25D366" size={30} />
 
     default:
       return <> </>

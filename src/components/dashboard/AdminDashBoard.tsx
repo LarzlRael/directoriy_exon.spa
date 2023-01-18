@@ -105,7 +105,7 @@ export const AdminDashBoard = ({ children }: AdminDashBoardProps) => {
           <span className="title-dash">Empleados</span>
           <div
             className="AdminDashBoard__dash--group"
-            onClick={() => dispatch(logOutSession)}
+            onClick={() => dispatch(logOutSession())}
           >
             <ul className="AdminDashBoard__dash--item">Salir</ul>
           </div>

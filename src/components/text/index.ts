@@ -1,7 +1,5 @@
-import { Span } from './Span'
-import { H2 } from './H2'
-import { P } from './P'
-import { Label } from './Label'
-import { Descripcion } from './Descripcion'
-
-export { Span, H2, P, Label, Descripcion }
+export { Span } from './Span'
+export { H2 } from './H2'
+export { P } from './P'
+export { Label } from './Label'
+export { Descripcion } from './Descripcion'

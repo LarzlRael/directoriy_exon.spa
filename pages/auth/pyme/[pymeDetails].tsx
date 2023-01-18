@@ -17,13 +17,20 @@ import {
 import { validateStatus } from '../../../src/components/utils/utils'
 import { departamentos, socialNetworks } from '../../../src/data/infoData'
 import BoxFlex from '../../../src/components/boxes/BoxFlex'
-import { FaTimesCircle, FaPlusCircle, FaTrashAlt } from 'react-icons/fa'
+import {
+  FaTimesCircle,
+  FaPlusCircle,
+  FaTrashAlt,
+  FaEye,
+  FaEyeSlash,
+} from 'react-icons/fa'
 import { Button } from '../../../src/components/buttons/Button'
 import Image from 'next/image'
 import DropzoneInput from '../../../src/components/input/DropZone'
 import FieldOrderForm from '../../../src/components/dashboard/FieldOrderForm'
 import { validateArray } from '../../../src/components/utils/validation/validation'
 import { H2 } from '../../../src/components/text'
+
 
 const PymeDetails = () => {
   const router = useRouter()
@@ -119,7 +126,11 @@ const PymeDetails = () => {
         <LoadingExpanded />
       ) : (
         <BoxFlex className="" direction="column">
-          <TitleAppbar title={onePyme?.nombre} id={onePyme?._id} />
+          <TitleAppbar
+            title={onePyme?.nombre!}
+            id={onePyme?._id!}
+            visible={onePyme?.visible!}
+          />
           <BoxFlex
             className="BoxFlex__pyme--container"
             direction="row"
@@ -396,14 +407,33 @@ const PymeDetails = () => {
 
 export default PymeDetails
 
-const TitleAppbar = ({ title, id }: any) => {
+interface TitleAppbarProps {
+  title: string
+  id: string
+  visible: boolean
+}
+const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
   const router = useRouter()
-  const deletePyme = () => {
+  function deletePyme () {
     if (confirm('¿Estas seguro de eliminar esta pyme?')) {
       deleteAction(`/pymes/deletePyme/${id}`)
         .then((res: any) => {
           if (validateStatus(res.status)) {
             alert('Pyme eliminada')
+            router.back()
+          }
+        })
+        .catch((err: any) => {
+          console.log(err)
+        })
+    }
+  }
+  function changeVisibility () {
+    if (confirm('¿Estás seguro de cambiar el estado de visibilidad de la pyme?')) {
+      putAction(`/pymes/changeVisibility/${id}`,{})
+        .then((res: any) => {
+          if (validateStatus(res.status)) {
+            alert('La pyma ha cambiado de estado')
             router.back()
           }
         })
@@ -423,14 +453,29 @@ const TitleAppbar = ({ title, id }: any) => {
         <H2 color="white" textAlign="center">
           {title}
         </H2>
-        <>
+        <BoxFlex className="xd" direction="row" gap="1.5rem">
+          {visible ? (
+            <FaEye
+              onClick={deletePyme}
+              className="pointer"
+              color="white"
+              size={25}
+            />
+          ) : (
+            <FaEyeSlash
+              onClick={changeVisibility}
+              className="pointer"
+              color="white"
+              size={25}
+            />
+          )}
           <FaTrashAlt
-            onClick={deletePyme}
+            onClick={changeVisibility}
             className="pointer"
             color="white"
             size={25}
           />
-        </>
+        </BoxFlex>
       </BoxFlex>
     </div>
   )
