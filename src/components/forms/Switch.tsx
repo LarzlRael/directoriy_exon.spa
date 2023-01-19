@@ -1,6 +1,5 @@
 import { useField, ErrorMessage } from 'formik'
 import React, { useState } from 'react'
-import { Label } from '../text'
 interface Props {
   label: string
   name: string

@@ -1,4 +1,4 @@
-import { useField, ErrorMessage } from 'formik';
+import { useField, ErrorMessage } from 'formik'
 import React, { useState } from 'react'
 import { Label } from '../text'
 interface Props {
@@ -11,7 +11,15 @@ export const Select = ({ label, ...props }: Props) => {
   return (
     <>
       <label htmlFor={props.id || props.name}>{label}</label>
-      <select className="Form__input--pyme" {...field} {...props} />
+      <select className="Form__input--pyme" {...field} {...props}>
+        {props.options.map((option:any) => {
+          return (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          )
+        })}
+      </select>
       {/* Errors */}
       <ErrorMessage name={props.name} component="label" />
     </>

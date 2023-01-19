@@ -17,16 +17,17 @@ import {
 
 import { PymeCard } from '../../src/components/widgets/card/PymeCard'
 import { Label } from '../../src/components/text/Label'
-import {AdminDashBoard} from '../../src/components/dashboard/AdminDashBoard'
+import { AdminDashBoard } from '../../src/components/dashboard/AdminDashBoard'
 import { GridContainer } from '../productos/[main]'
 import {
   Loading,
   LoadingExpanded,
 } from '../../src/components/widgets/loadings/Loading'
 import { useVerifyLogginHook } from '../../src/hooks/useVerifyLoggingHook'
+import { GlobalForm } from '../../src/components/forms/GlobalForm'
 
 function adminDashboard() {
-  useVerifyLogginHook();
+  useVerifyLogginHook()
   const [openMenu, setOpenMenu] = useState(false)
   /* const { logOut } = useContext(AuthAdminContext) */
   const { response: allPymes, loading, reload } = useAxiosAuth<
@@ -55,7 +56,7 @@ function adminDashboard() {
   } */
   return (
     <AdminDashBoard>
-      {!loading ? (
+      {/*  {!loading ? (
         validateArray(preconfigArray(allPymes)) ? (
           <GridContainer className="cards-container">
             {preconfigArray(allPymes).map((pyme) => (
@@ -73,7 +74,8 @@ function adminDashboard() {
         )
       ) : (
         <LoadingExpanded />
-      )}
+      )} */}
+      <GlobalForm />
     </AdminDashBoard>
   )
 }
