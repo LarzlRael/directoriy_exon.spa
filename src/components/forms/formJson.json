@@ -20,7 +20,7 @@
     "name": "verify",
     "placeholder": "Fernando",
     "label": "First Name",
-    "value": "",
+    "value": false,
     "validations": [
       {
         "type": "required"

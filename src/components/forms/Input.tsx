@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 interface Props {
   label: string
   name: string
-  type?: 'text' | 'email' | 'password'
+  type?: 'text' | 'email' | 'password' | 'number'
   [x: string]: any
 }
 export const Input = ({ label, ...props }: Props) => {

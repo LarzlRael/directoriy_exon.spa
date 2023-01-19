@@ -25,6 +25,7 @@ import {
 } from '../../src/components/widgets/loadings/Loading'
 import { useVerifyLogginHook } from '../../src/hooks/useVerifyLoggingHook'
 import { GlobalForm } from '../../src/components/forms/GlobalForm'
+import { firstExample } from '../../src/components/input/formPaterns'
 
 function adminDashboard() {
   useVerifyLogginHook()
@@ -75,7 +76,9 @@ function adminDashboard() {
       ) : (
         <LoadingExpanded />
       )} */}
-      <GlobalForm />
+      <GlobalForm inputJson={firstExample} onSubmit={(values) => {
+        console.log(values)
+      }} />
     </AdminDashBoard>
   )
 }

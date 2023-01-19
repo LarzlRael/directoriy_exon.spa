@@ -30,6 +30,11 @@ export const Switch = ({ label, ...props }: Props) => {
         <div className="toggle-switch"></div>
         <span className="toggle-label">{label}</span>
       </label>
+      <ErrorMessage
+        name={props.name}
+        component="label"
+        className="Form__text-error"
+      />
     </>
   )
 }
