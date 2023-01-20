@@ -6,6 +6,7 @@ import { primaryColor } from '../context/themeColors'
 import { H2, Span } from './text'
 import { Form, Formik, Field } from 'formik'
 import { Button } from './buttons/Button'
+import BoxFlex from './boxes/BoxFlex'
 
 const FormContainerdDiv = styled.div`
   /* display: flex; */
@@ -35,7 +36,7 @@ export const H2Styled = styled.h2<{
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : 'bold')};
 `
 
-const ContainerButtons = styled.div`
+/* const ContainerButtons = styled.div`
   display: flex;
   justify-content: space-between;
 
@@ -44,7 +45,7 @@ const ContainerButtons = styled.div`
     margin-top: 1rem;
     justify-content: space-around;
   }
-`
+` */
 
 export const SearchFilter = () => {
   const onSubmit = (values: any) => {
@@ -96,7 +97,7 @@ export const SearchFilter = () => {
 
             {/* <IconFilterList /> */}
 
-            <ContainerButtons>
+            <BoxFlex direction='row'>
               <Button textColor="black" background="white">
                 Filtro
               </Button>
@@ -108,7 +109,7 @@ export const SearchFilter = () => {
               >
                 Buscar
               </Button>
-            </ContainerButtons>
+            </BoxFlex>
           </Form>
         </Formik>
       </FormContainerdDiv>

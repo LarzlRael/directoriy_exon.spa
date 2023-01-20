@@ -1,6 +1,6 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
-import { Input, Select } from './'
+import { Input, Select, TextArea } from './'
 /* import formJson from './formJson.json' */
 import { Switch } from './Switch'
 import * as Yup from 'yup'
@@ -62,11 +62,13 @@ export const GlobalForm = ({ inputJson, onSubmit }: GlobalFormInterface) => {
                     <Select
                       label={item.label!}
                       name={item.name!}
-                      options={item.options}
+                      options={item.options!}
                     />
                   )
                 case 'checkbox':
-                  return <Switch label="Verificado" name="verify" />
+                  return <Switch label={item.label!} name={item.name!} />
+                case 'area':
+                  return <TextArea label={item.label!} name={item.name} />
               }
             })}
             <button type="submit">enviar datos we</button>

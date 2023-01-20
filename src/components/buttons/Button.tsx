@@ -55,12 +55,17 @@ export const Button = ({
       margin={margin}
     >
       {children}
-      <div
-        style={{
-          marginLeft: '10px',
-        }}
-      />
-      {icon && icon}
+
+      {icon && (
+        <>
+          <div
+            style={{
+              marginLeft: '10px',
+            }}
+          />
+          {icon}
+        </>
+      )}
     </ButtonStyle>
   )
 }

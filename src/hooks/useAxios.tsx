@@ -9,7 +9,7 @@ axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_URL
       config.headers.Authorization = 'Bearer ' + token_seguridad
       return config
     }
-  },
+  },s
   (error) => {
     return Promise.reject(error)
   },

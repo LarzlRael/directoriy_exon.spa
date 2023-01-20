@@ -16,7 +16,7 @@ import BoxFlex from '../../../src/components/boxes/BoxFlex'
 import { FaTimesCircle, FaPlusCircle } from 'react-icons/fa'
 import { Button } from '../../../src/components/buttons/Button'
 import Image from 'next/image'
-import { Input, Switch, Select } from '../../../src/components/forms/'
+import { Input, Switch, Select, TextArea } from '../../../src/components/forms/'
 import * as Yup from 'yup'
 
 const PymeDetails = () => {
@@ -94,15 +94,16 @@ const PymeDetails = () => {
               label="Departamento"
               name="departamento"
               disabled={loadingForm}
-            >
-              {departamentos.map((departamento) => {
+              options={departamentos}
+            />
+            {/* {departamentos.map((departamento) => {
                 return (
                   <option key={departamento} value={departamento}>
                     {departamento}
                   </option>
                 )
-              })}
-            </Select>
+              })} */}
+
             {/* <label className="toggle">
               <Field
                 name="verify"
@@ -137,21 +138,22 @@ const PymeDetails = () => {
               name="direccion"
               disabled={loadingForm}
             />
-            <Input
+            <TextArea
               label="Ingrese descripcion"
-              className="Form__input--pyme"
+              className="Form__input--textarea"
               placeholder="Descripcion"
               name="description"
-              component="textarea"
               disabled={loadingForm}
             />
-            <Field
+            <Input
+              label="latitud"
               className="Form__input--pyme"
               placeholder="latitud"
               name="latitude"
               disabled={loadingForm}
             />
-            <Field
+            <Input
+              label="longitud"
               className="Form__input--pyme"
               placeholder="longitude"
               name="longitude"

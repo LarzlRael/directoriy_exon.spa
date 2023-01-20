@@ -1,6 +1,7 @@
 import { InformationPlacesI } from '../components/InformationPlaces'
 import { IoPerson, IoHammer } from 'react-icons/io5'
 import { MdFileUpload } from 'react-icons/md'
+import { OptionsI } from '../interfaces/globalFormInterface'
 
 export const informationPlacesData: InformationPlacesI[] = [
   {
@@ -61,16 +62,43 @@ export const informationPlacesData: InformationPlacesI[] = [
   },
 ]
 
-export const departamentos = [
-  'La Paz',
-  'Cochabamba',
-  'Santa Cruz',
-  'Oruro',
-  'Potosi',
-  'Tarija',
-  'Chuquisaca',
-  'Beni',
-  'Pando',
+export const departamentos: OptionsI[] = [
+  {
+    id: 1,
+    label: 'La Paz',
+  },
+  {
+    id: 2,
+    label: 'Cochabamba',
+  },
+  {
+    id: 3,
+    label: 'Santa Cruz',
+  },
+  {
+    id: 4,
+    label: 'Oruro',
+  },
+  {
+    id: 5,
+    label: 'Potosi',
+  },
+  {
+    id: 6,
+    label: 'Tarija',
+  },
+  {
+    id: 7,
+    label: 'Chuquisaca',
+  },
+  {
+    id: 8,
+    label: 'Beni',
+  },
+  {
+    id: 9,
+    label: 'Pando',
+  },
 ]
 export const socialNetworks = [
   'Facebook',

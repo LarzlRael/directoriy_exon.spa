@@ -364,6 +364,17 @@ input[type='file'] {
   color: #424869;
   display: block;
 }
+.Form__input--textarea {
+  display: inline-block;
+  width: 100%;
+  padding: 0.6rem 0.5rem;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  height: 150px;
+  resize: none;
+}
 .switchBtn {
   position: relative;
   display: inline-block;

@@ -57,7 +57,7 @@ function adminDashboard() {
   } */
   return (
     <AdminDashBoard>
-      {/*  {!loading ? (
+      {!loading ? (
         validateArray(preconfigArray(allPymes)) ? (
           <GridContainer className="cards-container">
             {preconfigArray(allPymes).map((pyme) => (
@@ -75,10 +75,7 @@ function adminDashboard() {
         )
       ) : (
         <LoadingExpanded />
-      )} */}
-      <GlobalForm inputJson={firstExample} onSubmit={(values) => {
-        console.log(values)
-      }} />
+      )}
     </AdminDashBoard>
   )
 }

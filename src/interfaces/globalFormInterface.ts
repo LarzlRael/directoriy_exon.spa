@@ -1,18 +1,20 @@
+import * as Yup from 'yup';
 export interface GlobalFormInterface {
   inputJson: InputJsonI[]
   onSubmit: (data: any) => void
 }
 export interface InputJsonI {
-  type: string
-  name?: string
+  type?: string
+  name: string
   placeholder?: string
   label?: string
   value?: string | boolean
   validate?: any
-  validations?: undefined
-  options?: optionsI[]
+  options?: OptionsI[]
+  reference?: string
+  condition?: string
 }
-interface optionsI {
+export interface OptionsI {
   id: number
   label: string
 }

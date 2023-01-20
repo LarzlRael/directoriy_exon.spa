@@ -99,8 +99,8 @@ const SingleLocation = (props: SingleLocationProps) => {
             /> */}
             <Field as="select" name="departamentSelected">
               {departamentos.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+                <option key={option.id} value={option.label}>
+                  {option.label}
                 </option>
               ))}
             </Field>

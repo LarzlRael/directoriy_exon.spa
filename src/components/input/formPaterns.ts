@@ -12,12 +12,24 @@ export const firstExample: InputJsonI[] = [
       .min(2, 'Minimo 2 caracteres'),
   },
   {
+    name: 'verify4',
     type: 'checkbox',
-    name: 'verify',
     placeholder: 'Fernando',
-    label: 'First Name',
+    label: 'Mostrar coordenadas',
     value: false,
-    validate: Yup.boolean().isTrue('Debes aceptar los terminos y condiciones'),
+    /* validate: Yup.boolean().isTrue('Debes aceptar los terminos y condiciones'), */
+  },
+  {
+    name: 'latitude',
+    type: 'number',
+    placeholder: 'Herrera',
+    label: 'latitude',
+    value: '',
+    validate: Yup.string().when('verify4', {
+      is: true,
+      then: Yup.string().required('Campo requerido.'),
+    }),
+    reference: 'verify4',
   },
   {
     type: 'number',
@@ -32,6 +44,15 @@ export const firstExample: InputJsonI[] = [
     placeholder: 'fernando@google.com',
     label: 'Email',
     value: '',
+    validate: Yup.string().email('Email invalido'),
+  },
+  {
+    type: 'area',
+    name: 'description',
+    placeholder: 'fernando@google.com',
+    label: 'Description',
+    value: '',
+    /* validate: Yup.string().email('Email invalido'), */
   },
   {
     type: 'select',

@@ -14,7 +14,10 @@ import {
   postAction,
   putAction,
 } from '../../../src/provider/action/ActionAuthorization'
-import { validateStatus } from '../../../src/components/utils/utils'
+import {
+  validateStatus,
+  capitalizeFirstLetter,
+} from '../../../src/components/utils/utils'
 import { departamentos, socialNetworks } from '../../../src/data/infoData'
 import BoxFlex from '../../../src/components/boxes/BoxFlex'
 import {
@@ -31,6 +34,8 @@ import DropzoneInput from '../../../src/components/input/DropZone'
 import FieldOrderForm from '../../../src/components/dashboard/FieldOrderForm'
 import { validateArray } from '../../../src/components/utils/validation/validation'
 import { H2 } from '../../../src/components/text'
+import { Input, Select, Switch } from '../../../src/components/forms'
+import { TextArea } from '../../../src/components/forms/TextArea'
 
 const PymeDetails = () => {
   const router = useRouter()
@@ -51,7 +56,7 @@ const PymeDetails = () => {
     )
     if (validateStatus(action.status)) {
       setOnePyme(action.data)
-      setImgPreview(action.data.profileImage)
+      setImgPreview(action.data.profileImage ? action.data.profileImage : '')
       setLoading(false)
     }
   }
@@ -104,7 +109,6 @@ const PymeDetails = () => {
   }
   async function uploadFiles() {
     const formData = new FormData()
-
     formData.append('files', files.File)
     setLoadingForm(true)
     postAction(`/pymes/addedImage/${onePyme?._id}`, formData)
@@ -167,19 +171,15 @@ const PymeDetails = () => {
                     borderRadius: '100%',
                   }}
                 />
-                <input
-                  type="file"
-                  id="inputFile"
-                  onChange={handleImageChange}
-                />
-                <div className="label">
-                  <label htmlFor="inputFile" className="imageUp">
-                    Seleccionar imagen
-                    <FaFileImport />
-                  </label>
-                </div>
               </BoxFlex>
             )}
+            <input type="file" id="inputFile" onChange={handleImageChange} />
+            <BoxFlex>
+              <label htmlFor="inputFile" className="imageUp">
+                Seleccionar imagen de perfil
+                <FaFileImport size={20} color="blue" />
+              </label>
+            </BoxFlex>
             <Formik
               enableReinitialize={true}
               initialValues={{
@@ -190,13 +190,7 @@ const PymeDetails = () => {
               }}
               onSubmit={onSubmit}
             >
-              {({
-                setFieldValue,
-                setFieldTouched,
-                values,
-                errors,
-                touched,
-              }) => (
+              {({ values }) => (
                 <Form className="Form__pyme--container">
                   {files != null && (
                     <Button icon={<p>Subir</p>} onClick={uploadFiles}>
@@ -205,97 +199,76 @@ const PymeDetails = () => {
                   )}
 
                   <h3 className="Form__login--title ">Agregar Pyme</h3>
-                  <Field
-                    className="Form__input--pyme"
-                    placeholder="Usuario"
+
+                  <Input
+                    label="Nombre"
+                    type="text"
                     name="nombre"
-                    type="text"
                     disabled={loadingForm}
                   />
-                  <Field
-                    className="Form__input--pyme"
-                    placeholder="Propietario"
+
+                  <Input
+                    label="Propietario"
+                    type="text"
                     name="propietario"
-                    type="text"
                     disabled={loadingForm}
                   />
-
-                  <Field
-                    as="select"
+                  <Select
+                    label="Departamento"
                     name="departamento"
-                    className="Form__input--pyme"
                     disabled={loadingForm}
-                  >
-                    {departamentos.map((departamento) => {
-                      return (
-                        <option value={departamento} key={departamento}>
-                          {departamento}
-                        </option>
-                      )
-                    })}
-                  </Field>
-                  {/* <label className="switchBtn">
-                    <Field
-                      className="checkbox"
-                      placeholder="Verificado"
-                      name="verify"
-                      type="checkbox"
-                      disabled={loadingForm}
-                    />
-                    <div className="slide round"></div>
-                  </label> */}
+                    options={departamentos}
+                  />
 
-                  <label className="toggle">
-                    <Field
-                      name="verify"
-                      className="toggle-checkbox"
-                      type="checkbox"
-                    />
-                    <div className="toggle-switch"></div>
-                    <span className="toggle-label">
-                      {values.verify ? 'Verificado' : 'No verificado'}
-                    </span>
-                  </label>
+                  <Switch
+                    label="Verificado"
+                    name="verify"
+                    checked={values.verify}
+                  />
 
-                  <Field
-                    className="Form__input--pyme"
-                    placeholder="Telefono"
+                  <Input
+                    label="Telefono"
+                    type="number"
                     name="telefono"
-                    type="text"
                     disabled={loadingForm}
                   />
-                  <Field
-                    className="Form__input--pyme"
-                    placeholder="Correo electronico"
+
+                  <Input
+                    label="Correo electronico"
+                    type="email"
                     name="email"
                     disabled={loadingForm}
                   />
-                  <Field
-                    className="Form__input--pyme"
-                    placeholder="Dirección"
+
+                  <Input
+                    label="Dirección"
+                    type="text"
                     name="direccion"
                     disabled={loadingForm}
                   />
-                  <Field
-                    className="Form__input--pyme"
-                    placeholder="Descripcion"
+
+                  <TextArea
+                    className="Form__input--textarea"
+                    label="Descripcion"
                     name="description"
                     component="textarea"
                     disabled={loadingForm}
                   />
-                  <Field
+                  <Input
+                    label="Latitud"
                     className="Form__input--pyme"
                     placeholder="latitud"
                     name="latitude"
                     disabled={loadingForm}
                   />
-                  <Field
+
+                  <Input
+                    label="longitud"
                     className="Form__input--pyme"
-                    placeholder="longitude"
+                    placeholder="latitud"
                     name="longitude"
                     disabled={loadingForm}
                   />
-
                   <FieldArray name="redes_sociales">
                     {({ insert, remove, push }) => (
                       <div>
@@ -485,7 +458,7 @@ const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
         width="100%"
       >
         <H2 color="white" textAlign="center">
-          {title}
+          {capitalizeFirstLetter(title)}
         </H2>
         <BoxFlex className="xd" direction="row" gap="1.5rem">
           {visible ? (
