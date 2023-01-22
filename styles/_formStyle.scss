@@ -23,6 +23,7 @@
 }
 
 .toggle {
+  margin: 5px 0 5px 0;
   cursor: pointer;
   display: inline-block;
 }
@@ -70,7 +71,8 @@
 }
 
 .toggle-label {
-  margin-left: 5px;
+  display: block;
+  margin-bottom: 5px;
   position: relative;
   top: 2px;
 }

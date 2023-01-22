@@ -1,13 +1,24 @@
 import { ErrorMessage, useField } from 'formik'
 import React, { useState } from 'react'
+import { IconContext } from 'react-icons'
 interface Props {
   label: string
   name: string
   type?: 'text' | 'email' | 'password' | 'number'
   [x: string]: any
 }
-export const Input = ({ label, ...props }: Props) => {
+export const Input = ({ label,type, ...props }: Props) => {
   const [field, meta] = useField(props)
+  const [check, setcheck] = useState({
+    typeInput: 'password',
+  })
+  function handleCheck(e: any) {
+    console.log(check.typeInput)
+    const { checked } = e.target
+    setcheck({
+      typeInput: checked ? 'text' : 'password',
+    })
+  }
   return (
     <>
       <label className="Form__label--pyme" htmlFor={props.id || props.name}>
@@ -15,10 +26,16 @@ export const Input = ({ label, ...props }: Props) => {
       </label>
       <input
         className="Form__input--pyme"
-        type={props.type}
+        type={type !== 'password' ? type : check.typeInput}
         {...field}
         {...props}
       />
+      {type === 'password' && (
+        <div className="Input__check">
+          <label htmlFor="checkBox">Mostrar contraseña</label>
+          <input onChange={handleCheck} type="checkbox" name="checkBox" />
+        </div>
+      )}
       <ErrorMessage
         name={props.name}
         component="label"

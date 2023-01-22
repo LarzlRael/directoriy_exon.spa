@@ -9,18 +9,8 @@ export const Switch = ({ label, ...props }: Props) => {
   const [field] = useField({ ...props, type: 'checkbox' })
   return (
     <>
-      {/*       <label className="toggle">
-              <Field
-                name="verify"
-                className="toggle-checkbox"
-                type="checkbox"
-              />
-              <div className="toggle-switch"></div>
-              <span className="toggle-label">
-                {values.verify ? 'Verificado' : 'No verificado'}
-              </span>
-            </label>  */}
       <label className="toggle">
+        <span className="toggle-label Form__label--pyme">{label}</span>
         <input
           type="checkbox"
           {...field}
@@ -28,7 +18,6 @@ export const Switch = ({ label, ...props }: Props) => {
           className="toggle-checkbox"
         />
         <div className="toggle-switch"></div>
-        <span className="toggle-label">{label}</span>
       </label>
       <ErrorMessage
         name={props.name}

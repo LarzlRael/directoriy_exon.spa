@@ -13,7 +13,7 @@ export const TextArea = ({ label, ...props }: Props) => {
         {label}
       </label>
       <textarea
-        className="Form__input--text"
+        className="Form__input--textarea"
         {...field}
         {...props}
       />

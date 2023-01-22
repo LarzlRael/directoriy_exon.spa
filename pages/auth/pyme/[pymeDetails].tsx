@@ -36,6 +36,8 @@ import { validateArray } from '../../../src/components/utils/validation/validati
 import { H2 } from '../../../src/components/text'
 import { Input, Select, Switch } from '../../../src/components/forms'
 import { TextArea } from '../../../src/components/forms/TextArea'
+import { GlobalForm } from '../../../src/components/forms/GlobalForm'
+import { pymeForm } from '../../../src/components/input/formPaterns'
 
 const PymeDetails = () => {
   const router = useRouter()
@@ -87,8 +89,8 @@ const PymeDetails = () => {
     putAction(`/pymes/updatePyme/${values._id}`, {
       ...values,
       verificado: values.verify ? 'verificado' : 'no_verificado',
-      categoria: 'xd',
       localizacion: `${values.longitude},${values.latitude}`,
+      categoria: 'xd',
     })
       .then((res) => {
         updatePyme(res)
@@ -174,12 +176,6 @@ const PymeDetails = () => {
               </BoxFlex>
             )}
             <input type="file" id="inputFile" onChange={handleImageChange} />
-            <BoxFlex>
-              <label htmlFor="inputFile" className="imageUp">
-                Seleccionar imagen de perfil
-                <FaFileImport size={20} color="blue" />
-              </label>
-            </BoxFlex>
             <Formik
               enableReinitialize={true}
               initialValues={{
@@ -198,77 +194,6 @@ const PymeDetails = () => {
                     </Button>
                   )}
 
-                  <h3 className="Form__login--title ">Agregar Pyme</h3>
-
-                  <Input
-                    label="Nombre"
-                    type="text"
-                    name="nombre"
-                    disabled={loadingForm}
-                  />
-
-                  <Input
-                    label="Propietario"
-                    type="text"
-                    name="propietario"
-                    disabled={loadingForm}
-                  />
-                  <Select
-                    label="Departamento"
-                    name="departamento"
-                    disabled={loadingForm}
-                    options={departamentos}
-                  />
-
-                  <Switch
-                    label="Verificado"
-                    name="verify"
-                    checked={values.verify}
-                  />
-
-                  <Input
-                    label="Telefono"
-                    type="number"
-                    name="telefono"
-                    disabled={loadingForm}
-                  />
-
-                  <Input
-                    label="Correo electronico"
-                    type="email"
-                    name="email"
-                    disabled={loadingForm}
-                  />
-
-                  <Input
-                    label="Dirección"
-                    type="text"
-                    name="direccion"
-                    disabled={loadingForm}
-                  />
-
-                  <TextArea
-                    className="Form__input--textarea"
-                    label="Descripcion"
-                    name="description"
-                    component="textarea"
-                    disabled={loadingForm}
-                  />
-                  <Input
-                    label="Latitud"
-                    className="Form__input--pyme"
-                    placeholder="latitud"
-                    name="latitude"
-                    disabled={loadingForm}
-                  />
-
-                  <Input
-                    label="longitud"
-                    className="Form__input--pyme"
-                    placeholder="latitud"
-                    name="longitude"
-                    disabled={loadingForm}
-                  />
                   <FieldArray name="redes_sociales">
                     {({ insert, remove, push }) => (
                       <div>
@@ -358,17 +283,29 @@ const PymeDetails = () => {
                     />
                   </a>
                 ))} */}
-                  {loadingForm ? (
-                    <Loading />
-                  ) : (
-                    <button type="submit" className="button-login pointer">
-                      Guardar
-                    </button>
-                  )}
+                  {
+                    <GlobalForm
+                      inputJson={pymeForm}
+                      onSubmit={(values) => console.log(values)}
+                      formTitle="Datos de la pyme"
+                      data={{
+                        ...values,
+                        verificado: values.verify
+                          ? 'verificado'
+                          : 'no_verificado',
+                        localizacion: `${values.longitude},${values.latitude}`,
+                      }}
+                    />
+                  }
+                  
                 </Form>
               )}
             </Formik>
             <BoxFlex className="Form__pyme--container" direction="column">
+              <label htmlFor="inputFile" className="imageUp">
+                Seleccionar imagen de perfil
+                <FaFileImport size={20} color="blue" />
+              </label>
               {onePyme?.localizacion && (
                 <MapLocalization
                   localization={onePyme?.localizacion!}

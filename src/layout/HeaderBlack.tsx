@@ -161,18 +161,6 @@ export const HeaderBlack = ({ darkMenu = false, sticky }: PropsHeader) => {
               : 'Header-links--black'
           }  ${menu ? 'open-menu' : 'close-menu'}`}
         >
-          {/* <Link onClick={linkClickeable} href="/333">
-            Inicio
-          </Link>
-          <Link href="/test2" onClick={linkClickeable}>
-            Listado
-          </Link>
-          <Link href="/test3" onClick={linkClickeable}>
-            Categorias
-          </Link>
-          <Link href="/auth/login" onClick={linkClickeable}>
-            Mi cuenta
-          </Link> */}
           {links.map((link, index) => {
             return (
               <div

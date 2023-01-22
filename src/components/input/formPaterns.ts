@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+import { departamentos } from '../../data/infoData'
 import { InputJsonI } from '../../interfaces/globalFormInterface'
 export const firstExample: InputJsonI[] = [
   {
@@ -74,4 +75,57 @@ export const firstExample: InputJsonI[] = [
       },
     ],
   },
+]
+
+export const pymeForm: InputJsonI[] = [
+  {
+    name: 'nombre',
+    type: 'text',
+    placeholder: 'Ingrese el nombre de la pyme',
+    label: 'Propietario',
+  },
+  {
+    name: 'propietario',
+    type: 'text',
+    placeholder: 'Ingrese el nombre del propietario',
+    label: 'Propietario',
+  },
+  {
+    type: 'checkbox',
+    name: 'verify',
+    placeholder: 'Fernando',
+    label: 'Verificar',
+    value: false,
+  },
+  {
+    type: 'text',
+    name: 'telefono',
+    placeholder: 'Ingrese el telefono',
+    label: 'Teléfono',
+  },
+  {
+    type: 'area',
+    name: 'description',
+    placeholder: 'Ingrese una descripcion',
+    label: 'Descripción',
+  },
+  {
+    type: 'text',
+    name: 'latitude',
+    placeholder: 'Ingrese la latitud',
+    label: 'Latitud',
+  },
+  {
+    type: 'text',
+    name: 'longitude',
+    placeholder: 'Ingrese la longitud',
+    label: 'Longitud',
+  },
+  {
+    type: 'select',
+    name: 'departamento',
+    label: 'Departamento',
+    options: departamentos,
+
+  }
 ]

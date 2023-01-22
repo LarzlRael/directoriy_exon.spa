@@ -5,9 +5,17 @@ import { Input, Select, TextArea } from './'
 import { Switch } from './Switch'
 import * as Yup from 'yup'
 import { GlobalFormInterface } from '../../interfaces/globalFormInterface'
+import { H2 } from '../text'
+import { Loading } from '../widgets/loadings/Loading'
 /* const initialValues: { [x: string]: any } = {} */
 
-export const GlobalForm = ({ inputJson, onSubmit }: GlobalFormInterface) => {
+export const GlobalForm = ({
+  inputJson,
+  onSubmit,
+  data,
+  formTitle,
+  loading,
+}: GlobalFormInterface) => {
   function initialValueGeneration(
     inputJson: any[],
   ): {
@@ -22,7 +30,8 @@ export const GlobalForm = ({ inputJson, onSubmit }: GlobalFormInterface) => {
     inputJson.forEach((i: any) => {
       initialValues = {
         ...initialValues,
-        [i.name]: i.value,
+        /* [i.name]: i.value, */
+        [i.name]: data ? data[i.name] : i.value,
       }
       validate = {
         ...validate,
@@ -36,11 +45,12 @@ export const GlobalForm = ({ inputJson, onSubmit }: GlobalFormInterface) => {
   const validationSchema = Yup.object(validate)
   return (
     <div>
-      <h1>Dynamic form</h1>
+      <H2>{formTitle}</H2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
+        enableReinitialize
       >
         {(formik) => (
           <Form>
@@ -71,7 +81,13 @@ export const GlobalForm = ({ inputJson, onSubmit }: GlobalFormInterface) => {
                   return <TextArea label={item.label!} name={item.name} />
               }
             })}
-            <button type="submit">enviar datos we</button>
+            {loading ? (
+              <button className="button-login pointer" type="submit">
+                Guardar
+              </button>
+            ) : (
+              <Loading />
+            )}
           </Form>
         )}
       </Formik>

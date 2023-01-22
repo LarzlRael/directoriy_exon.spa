@@ -113,12 +113,8 @@ export const links = [
     labelLink: 'Inicio',
   },
   {
-    href: '/test2',
+    href: '/productos/confecciones',
     labelLink: 'Listado',
-  },
-  {
-    href: 'auth/addPyme',
-    labelLink: 'Agregar Pyme',
   },
   {
     href: '/auth/login',
