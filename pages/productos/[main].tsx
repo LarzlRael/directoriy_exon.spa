@@ -15,6 +15,7 @@ import { Button } from '../../src/components/buttons/Button'
 import { HeaderBlack } from '../../src/layout/HeaderBlack'
 import { PymesResponseInterface } from '../../src/interfaces/pymesResponseInterface'
 import useAxios from '../../src/hooks/useAxios'
+import { Input } from '../../src/components/forms/Input'
 
 interface SingleLocationProps {}
 
@@ -84,23 +85,18 @@ const SingleLocation = (props: SingleLocationProps) => {
 
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         <Form>
-          {/* <InputSearch type="text"> */}
           <InputSearchContainer>
-            <Field
+            <Input
+              label=""
               id="nombre"
               name="nombre"
               placeholder="Buscar Pyme o categoria"
               className="input-search"
             />
-            {/* <Dropdown
-              options={departamentos}
-              value={selectedOption}
-              onChange={(e) => setSelectedOption(e.target.value)}
-            /> */}
             <Field as="select" name="departamentSelected">
               {departamentos.map((option) => (
-                <option key={option.id} value={option.label}>
-                  {option.label}
+                <option key={option.key} value={option.value}>
+                  {option.key}
                 </option>
               ))}
             </Field>
@@ -108,7 +104,7 @@ const SingleLocation = (props: SingleLocationProps) => {
             <Button
               type="submit"
               background={primaryColor}
-              icon={<IoSearch color="#fff" height="16px" width="16px" />}
+              icon={<IoSearch color="#fff" size={25} />}
             >
               Buscar
             </Button>

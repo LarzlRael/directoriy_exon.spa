@@ -1,22 +1,13 @@
 import React from 'react'
-import { Suspense } from 'react'
 import { Header } from './Header'
 import { SearchFilter } from '../components/SearchFilter'
-import { LoadingExpanded } from '../components/widgets/loadings/Loading'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store/store'
-import { increment } from '../store/slices/slices'
 import { Footer } from './Footer'
 import Head from 'next/head'
-import { GlobalForm } from '../components/forms/GlobalForm'
-import { firstExample, pymeForm } from '../components/input/formPaterns';
 
 interface LayoutProps {
   children: React.ReactNode
 }
 export const Layout = ({ children }: LayoutProps) => {
-  const { value } = useSelector((state: RootState) => state.counter)
-  const dispatch = useDispatch()
   return (
     <>
       <Head>
@@ -48,13 +39,11 @@ export const Layout = ({ children }: LayoutProps) => {
         />
         <title>Pyme</title>
       </Head>
-      <div className="mainPage"></div>
-      {/* {children} */}
-      <GlobalForm
-        inputJson={pymeForm}
-        onSubmit={(values) => console.log(values)}
-        formTitle="Datos de la pyme"
-      />
+      <div className="mainPage">
+        <Header sticky={false} />
+        <SearchFilter />
+      </div>
+      {children}
       <Footer />
     </>
   )

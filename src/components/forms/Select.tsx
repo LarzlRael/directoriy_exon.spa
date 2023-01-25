@@ -14,15 +14,15 @@ export const Select = ({ label, options, ...props }: Props) => {
     <>
       <label htmlFor={props.id || props.name}>{label}</label>
       <select className="Form__input--pyme" {...field} {...props}>
-        {options.map((option: any) => {
+        {options.map((option: OptionsI) => {
           return (
-            <option key={option.value} value={option.value}>
-              {option.label}
+            <option key={option.key} value={option.value}>
+              {option.key}
             </option>
           )
         })}
       </select>
-      {/* Errors */}
+      
       <ErrorMessage name={props.name} component="label" />
     </>
   )

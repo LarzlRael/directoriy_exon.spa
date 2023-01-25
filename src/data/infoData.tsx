@@ -64,44 +64,44 @@ export const informationPlacesData: InformationPlacesI[] = [
 
 export const departamentos: OptionsI[] = [
   {
-    id: 0,
-    label: 'Seleccione un departamento',
+    value: '',
+    key: 'Seleccione un departamento',
   },
   {
-    id: 1,
-    label: 'La Paz',
+    value: 'La Paz',
+    key: 'La Paz',
   },
   {
-    id: 2,
-    label: 'Cochabamba',
+    value: 'Cochabamba',
+    key: 'Cochabamba',
   },
   {
-    id: 3,
-    label: 'Santa Cruz',
+    value: 'Santa Cruz',
+    key: 'Santa Cruz',
   },
   {
-    id: 4,
-    label: 'Oruro',
+    value: 'Oruro',
+    key: 'Oruro',
   },
   {
-    id: 5,
-    label: 'Potosi',
+    value: 'Potosi',
+    key: 'Potosi',
   },
   {
-    id: 6,
-    label: 'Tarija',
+    value: 'Tarija',
+    key: 'Tarija',
   },
   {
-    id: 7,
-    label: 'Chuquisaca',
+    value: 'Chuquisaca',
+    key: 'Chuquisaca',
   },
   {
-    id: 8,
-    label: 'Beni',
+    value: 'Beni',
+    key: 'Beni',
   },
   {
-    id: 9,
-    label: 'Pando',
+    value: 'Pando',
+    key: 'Pando',
   },
 ]
 export const socialNetworks = [

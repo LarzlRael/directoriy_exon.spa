@@ -31,6 +31,7 @@ export const pymeForm: InputJsonI[] = [
     placeholder: 'Ingrese el nombre de la pyme',
     label: 'Propietario',
     initialValue: '',
+    validate: Yup.string().required('Campo requerido'),
   },
   {
     name: 'propietario',
@@ -38,6 +39,7 @@ export const pymeForm: InputJsonI[] = [
     placeholder: 'Ingrese el nombre del propietario',
     label: 'Propietario',
     initialValue: '',
+    validate: Yup.string().required('Campo requerido'),
   },
   {
     name: 'email',
@@ -45,6 +47,7 @@ export const pymeForm: InputJsonI[] = [
     placeholder: 'Ingrese el email de la pyme',
     label: 'Email',
     initialValue: '',
+    validate: Yup.string().email('Email invalido').required('Campo requerido'),
   },
   {
     type: 'checkbox',
@@ -66,6 +69,7 @@ export const pymeForm: InputJsonI[] = [
     placeholder: 'Ingrese una descripcion',
     label: 'Descripción',
     initialValue: '',
+    validate: Yup.string().required('Campo requerido'),
   },
   {
     type: 'text',
@@ -87,6 +91,7 @@ export const pymeForm: InputJsonI[] = [
     name: 'departamento',
     label: 'Departamento',
     options: departamentos,
+    validate: Yup.string().required('Campo requerido'),
   },
 
   {

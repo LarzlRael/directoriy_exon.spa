@@ -35,7 +35,7 @@ export const PymeCard = ({
       )}
 
       <Link
-        href={isAdmin ? `/auth/pyme/${nombre}` : `/productos/details/${nombre}`}
+        href={isAdmin ? `/auth/pyme/${_id}` : `/productos/details/${nombre}`}
       >
         <Image
           /* layout="fill" */

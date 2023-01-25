@@ -26,7 +26,6 @@ const PymeDetails = () => {
   const [loadingForm, setLoadingForm] = useState(false)
 
   const onSubmit = async (values: any) => {
-    console.log(values)
     setLoadingForm(true)
     postAction('/pymes/newPyme', {
       ...values,

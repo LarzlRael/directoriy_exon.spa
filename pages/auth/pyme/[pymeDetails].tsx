@@ -53,7 +53,7 @@ const PymeDetails = () => {
   const getOnePyme = async () => {
     setLoading(true)
     const action: any = await getAction(
-      `http://localhost:4000/pymes/${pymeDetails}`,
+      `http://localhost:4000/pymes/getByPyme/${pymeDetails}`,
     )
     if (validateStatus(action.status)) {
       setOnePyme(action.data)
@@ -88,8 +88,9 @@ const PymeDetails = () => {
   }, [router.isReady])
 
   const onSubmit = async (values: any) => {
+    console.log(values)
     setLoadingForm(true)
-    putAction(`/pymes/updatePyme/${values._id}`, {
+    putAction(`/pymes/updatePyme/${onePyme!._id}`, {
       ...values,
       verificado: values.verify ? 'verificado' : 'no_verificado',
       localizacion: `${values.longitude},${values.latitude}`,

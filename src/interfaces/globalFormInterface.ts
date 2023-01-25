@@ -18,6 +18,6 @@ export interface InputJsonI {
   condition?: string
 }
 export interface OptionsI {
-  id: number
-  label: string
+  key: string
+  value: string
 }
