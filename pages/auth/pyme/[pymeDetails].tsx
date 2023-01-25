@@ -42,7 +42,6 @@ import { pymeForm } from '../../../src/components/input/formPaterns'
 const PymeDetails = () => {
   const router = useRouter()
   let { pymeDetails } = router.query
-  /* const [url, seturl] = useState('') */
   const [onePyme, setOnePyme] = useState<PymesResponseInterface | null>(null)
   const [loading, setLoading] = useState(true)
   const [loadingForm, setLoadingForm] = useState(false)
@@ -58,7 +57,11 @@ const PymeDetails = () => {
     )
     if (validateStatus(action.status)) {
       setOnePyme(action.data)
-      setImgPreview(action.data.profileImage ? action.data.profileImage : '')
+      setImgPreview(
+        action.data.profileImage
+          ? action.data.profileImage
+          : 'https://res.cloudinary.com/wmcgi/image/upload/v1655473157/assets/Grupo_494_uhpz1h_vp7dvq.png',
+      )
       setLoading(false)
     }
   }
@@ -103,6 +106,7 @@ const PymeDetails = () => {
   }
   function updatePyme(res) {
     if (validateStatus(res.status)) {
+      setLoadingForm(false)
       alert('Pyme actualizada')
       getOnePyme()
     } else {
@@ -162,154 +166,54 @@ const PymeDetails = () => {
             width="100%"
             alignItems="flex-start"
           >
-            {onePyme!.profileImage && (
-              <BoxFlex>
-                <Image
-                  src={imgPreview}
-                  alt="profile image"
-                  width={75}
-                  height={75}
-                  style={{
-                    borderRadius: '100%',
-                  }}
-                />
-              </BoxFlex>
-            )}
-            <input type="file" id="inputFile" onChange={handleImageChange} />
-            <Formik
-              enableReinitialize={true}
-              initialValues={{
-                ...onePyme,
-                verify: onePyme!.verificado == 'verificado' ? true : false,
-                longitude: parseFloat(onePyme!.localizacion?.split(',')[0]!),
-                latitude: parseFloat(onePyme!.localizacion?.split(',')[1]!),
-              }}
-              onSubmit={onSubmit}
-            >
-              {({ values }) => (
-                <Form className="Form__pyme--container">
-                  {files != null && (
-                    <Button icon={<p>Subir</p>} onClick={uploadFiles}>
-                      Subir archivos
-                    </Button>
-                  )}
-
-                  <FieldArray name="redes_sociales">
-                    {({ insert, remove, push }) => (
-                      <div>
-                        {values.redes_sociales!.length > 0 &&
-                          values.redes_sociales!.map((friend, index) => (
-                            <div className="row" key={index}>
-                              <div className="col">
-                                <Field
-                                  as="select"
-                                  name={`redes_sociales.${index}.nombre`}
-                                  className="Form__input--pyme"
-                                  disabled={loadingForm}
-                                >
-                                  {socialNetworks.map((social) => {
-                                    return (
-                                      <option value={social} key={social}>
-                                        {social}
-                                      </option>
-                                    )
-                                  })}
-                                </Field>
-                              </div>
-                              <BoxFlex
-                                className=""
-                                justify="space-between"
-                                direction="row"
-                              >
-                                <label
-                                  htmlFor={`redes_sociales.${index}.urlRedSocial`}
-                                >
-                                  URL
-                                </label>
-                                <FaTimesCircle
-                                  type="button"
-                                  color="red"
-                                  size={20}
-                                  className="secondary"
-                                  onClick={() => remove(index)}
-                                />
-                              </BoxFlex>
-                              <BoxFlex className={'xd'} direction="row">
-                                <Field
-                                  name={`redes_sociales.${index}.urlRedSocial`}
-                                  placeholder="Ingrese el Url de la red social"
-                                  type="text"
-                                  className="Form__input--pyme"
-                                />
-                              </BoxFlex>
-                            </div>
-                          ))}
-                        <Button
-                          type="button"
-                          margin="10px 0"
-                          onClick={() => {
-                            push({
-                              nombre: '',
-                              urlRedSocial: '',
-                            })
-                          }}
-                          icon={<FaPlusCircle size={20} />}
-                        >
-                          Agregar Red social
-                        </Button>
-                      </div>
-                    )}
-                  </FieldArray>
-
-                  {validateArray(onePyme?.urlImages!) && (
-                    <FieldOrderForm
-                      id="xd"
-                      fields={onePyme!.urlImages.map((url, index) => {
-                        return {
-                          id: index,
-                          content: url,
-                        }
-                      })}
-                      url={`pymes/changeOrderImage/${onePyme!._id}`}
-                      order="order"
-                    />
-                  )}
-                  {/* {onePyme!.urlImages.map((url) => (
-                  <a href={url} target="_blank">
-                    <img
-                      style={{ width: '100px', height: '100px' }}
-                      src={url}
-                      alt=""
-                    />
-                  </a>
-                ))} */}
-                  {
-                    <GlobalForm
-                      inputJson={pymeForm}
-                      onSubmit={(values) => console.log(values)}
-                      formTitle="Datos de la pyme"
-                      data={{
-                        ...values,
-                        verificado: values.verify
-                          ? 'verificado'
-                          : 'no_verificado',
-                        localizacion: `${values.longitude},${values.latitude}`,
-                      }}
-                    />
-                  }
-                  
-                </Form>
-              )}
-            </Formik>
-            <BoxFlex className="Form__pyme--container" direction="column">
+            <BoxFlex direction="column">
+              <Image
+                src={imgPreview}
+                alt="profile image"
+                width={75}
+                height={75}
+                style={{
+                  borderRadius: '100%',
+                }}
+              />
+              <input type="file" id="inputFile" onChange={handleImageChange} />
               <label htmlFor="inputFile" className="imageUp">
                 Seleccionar imagen de perfil
                 <FaFileImport size={20} color="blue" />
               </label>
+
+              <GlobalForm
+                loading={loadingForm}
+                inputJson={pymeForm}
+                onSubmit={onSubmit}
+                formTitle="Datos de la pyme"
+                data={{
+                  ...onePyme,
+                  verify: onePyme!.verificado == 'verificado' ? true : false,
+                  longitude: parseFloat(onePyme!.localizacion?.split(',')[0]!),
+                  latitude: parseFloat(onePyme!.localizacion?.split(',')[1]!),
+                }}
+              />
+            </BoxFlex>
+            {/* <input type="file" id="inputFile" onChange={handleImageChange} /> */}
+            <BoxFlex direction="column">
               {onePyme?.localizacion && (
                 <MapLocalization
                   localization={onePyme?.localizacion!}
                   direction={onePyme?.direccion!}
+                />
+              )}
+              {validateArray(onePyme?.urlImages!) && (
+                <FieldOrderForm
+                  id="xd"
+                  fields={onePyme!.urlImages.map((url, index) => {
+                    return {
+                      id: index,
+                      content: url,
+                    }
+                  })}
+                  url={`pymes/changeOrderImage/${onePyme!._id}`}
+                  order="order"
                 />
               )}
 
@@ -325,19 +229,6 @@ const PymeDetails = () => {
                     Subir imagenes para la pyme
                   </Button>
                 )}
-              </BoxFlex>
-
-              <BoxFlex className="" direction="column">
-                {/* <DropzoneInput
-                  uploadFiles={setProfileImage}
-                  name="File"
-                  label="Subir imagen de perfil"
-                />
-                {profileImage != null && (
-                  <Button icon={<p>Subir</p>} onClick={uploadProfileImage}>
-                    Subir imagen de perfil
-                  </Button>
-                )} */}
               </BoxFlex>
             </BoxFlex>
           </BoxFlex>

@@ -8,7 +8,8 @@ import { startSession } from '../../src/store/slices/slices'
 import { Loading } from '../../src/components/widgets/loadings/Loading'
 import { H2 } from '../../src/components/text/H2'
 import { useRouter } from 'next/dist/client/router'
-import { useVerifyLogginHook } from '../../src/hooks/useVerifyLoggingHook';
+import { useVerifyLogginHook } from '../../src/hooks/useVerifyLoggingHook'
+import { Input } from '../../src/components/forms'
 
 function login() {
   const { isLogged } = useSelector((state: RootState) => state.authSlice)
@@ -66,8 +67,9 @@ function login() {
       <div className="Form__container animate__animated animate__fadeInUp">
         <Formik initialValues={initialValues} onSubmit={onSubmit}>
           <Form className="Form__login">
-            <h3 className="Form__login--title ">Login</h3>
-            <Field
+            <h3 className="Form__login--title ">Iniciar Sesion</h3>
+            <Input
+              label=""
               className="Form__input"
               placeholder="Usuario"
               name="username"
@@ -75,8 +77,8 @@ function login() {
               disabled={loading}
             />
             <br />
-            <Field
-              className="Form__input"
+            <Input
+              label=""
               placeholder="Contraseña"
               name="password"
               type="password"

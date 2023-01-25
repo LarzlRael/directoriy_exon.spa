@@ -64,6 +64,10 @@ export const informationPlacesData: InformationPlacesI[] = [
 
 export const departamentos: OptionsI[] = [
   {
+    id: 0,
+    label: 'Seleccione un departamento',
+  },
+  {
     id: 1,
     label: 'La Paz',
   },

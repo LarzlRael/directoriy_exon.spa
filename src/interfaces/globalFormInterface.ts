@@ -11,7 +11,7 @@ export interface InputJsonI {
   name: string
   placeholder?: string
   label?: string
-  value?: string | boolean 
+  initialValue?: string | boolean | any[]
   validate?: any
   options?: OptionsI[]
   reference?: string

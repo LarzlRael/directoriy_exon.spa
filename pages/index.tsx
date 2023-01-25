@@ -7,11 +7,11 @@ import { InformationPlaces } from '../src/components/InformationPlaces'
 const MainPage = () => {
   return (
     <Layout>
-      <InformationPlaces
+{/*       <InformationPlaces
         title="Descubre las pymes"
         subtitle="Todas las categorias"
         places={informationPlacesData}
-      />
+      /> */}
     </Layout>
   )
 }

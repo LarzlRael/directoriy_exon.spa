@@ -8,6 +8,8 @@ import { RootState } from '../store/store'
 import { increment } from '../store/slices/slices'
 import { Footer } from './Footer'
 import Head from 'next/head'
+import { GlobalForm } from '../components/forms/GlobalForm'
+import { firstExample, pymeForm } from '../components/input/formPaterns';
 
 interface LayoutProps {
   children: React.ReactNode
@@ -46,11 +48,13 @@ export const Layout = ({ children }: LayoutProps) => {
         />
         <title>Pyme</title>
       </Head>
-      <div className="mainPage">
-        <Header sticky={false} />
-        <SearchFilter />
-      </div>
-      {children}
+      <div className="mainPage"></div>
+      {/* {children} */}
+      <GlobalForm
+        inputJson={pymeForm}
+        onSubmit={(values) => console.log(values)}
+        formTitle="Datos de la pyme"
+      />
       <Footer />
     </>
   )

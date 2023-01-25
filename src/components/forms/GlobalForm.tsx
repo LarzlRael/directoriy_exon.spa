@@ -4,9 +4,14 @@ import { Input, Select, TextArea } from './'
 /* import formJson from './formJson.json' */
 import { Switch } from './Switch'
 import * as Yup from 'yup'
-import { GlobalFormInterface } from '../../interfaces/globalFormInterface'
+import {
+  GlobalFormInterface,
+  InputJsonI,
+} from '../../interfaces/globalFormInterface'
 import { H2 } from '../text'
 import { Loading } from '../widgets/loadings/Loading'
+import DropzoneInput from '../input/DropZone'
+import { SelectAdd } from './SelectAdd'
 /* const initialValues: { [x: string]: any } = {} */
 
 export const GlobalForm = ({
@@ -26,12 +31,10 @@ export const GlobalForm = ({
   } {
     let initialValues: { [x: string]: any } = {}
     let validate = {}
-
-    inputJson.forEach((i: any) => {
+    inputJson.forEach((i: InputJsonI) => {
       initialValues = {
         ...initialValues,
-        /* [i.name]: i.value, */
-        [i.name]: data ? data[i.name] : i.value,
+        [i.name]: data && data[i.name] ? data[i.name] : i.initialValue,
       }
       validate = {
         ...validate,
@@ -54,7 +57,7 @@ export const GlobalForm = ({
       >
         {(formik) => (
           <Form>
-            {inputJson.map((item) => {
+            {inputJson.map((item, index) => {
               switch (item.type) {
                 case 'text':
                 case 'password':
@@ -65,6 +68,7 @@ export const GlobalForm = ({
                       label={item.label!}
                       name={item.name!}
                       type={item.type}
+                      key={item.name}
                     />
                   )
                 case 'select':
@@ -73,16 +77,37 @@ export const GlobalForm = ({
                       label={item.label!}
                       name={item.name!}
                       options={item.options!}
+                      key={item.name}
                     />
                   )
                 case 'checkbox':
-                  return <Switch label={item.label!} name={item.name!} />
+                  return (
+                    <Switch
+                      label={item.label!}
+                      name={item.name!}
+                      key={item.name}
+                    />
+                  )
                 case 'area':
-                  return <TextArea label={item.label!} name={item.name} />
+                  return (
+                    <TextArea
+                      label={item.label!}
+                      name={item.name}
+                      key={item.name}
+                    />
+                  )
+                case 'selectRRSS':
+                  return (
+                    <SelectAdd
+                      uploadFiles={formik.setFieldValue}
+                      name={item.name}
+                      label={item.label!}
+                    />
+                  )
               }
             })}
-            {loading ? (
-              <button className="button-login pointer" type="submit">
+            {!loading ? (
+              <button type="submit" className="button-login pointer">
                 Guardar
               </button>
             ) : (

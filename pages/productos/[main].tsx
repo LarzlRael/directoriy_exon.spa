@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDocumentTitle } from '../../src/hooks/useDocumentTitle'
-import useAxiosAuth from '../../src/hooks/useAxios'
 import { Indicator } from '../../src/components/Indicator'
 import { Formik, Form, Field } from 'formik'
 import { departamentos } from '../../src/data/infoData'
@@ -15,6 +14,7 @@ import { sizeMedia } from '../../styles/mediaQuerys'
 import { Button } from '../../src/components/buttons/Button'
 import { HeaderBlack } from '../../src/layout/HeaderBlack'
 import { PymesResponseInterface } from '../../src/interfaces/pymesResponseInterface'
+import useAxios from '../../src/hooks/useAxios'
 
 interface SingleLocationProps {}
 
@@ -32,7 +32,7 @@ const SingleLocation = (props: SingleLocationProps) => {
   useDocumentTitle('Categorias')
   const [url, setUrl] = useState('/pymes')
 
-  const { response: allPymes, loading, reload } = useAxiosAuth<
+  const { response: allPymes, loading, reload } = useAxios<
     PymesResponseInterface[]
   >({
     url: url,
