@@ -1,9 +1,10 @@
 import { validateArray } from '../utils/validation/validation'
-import DataType from './DataType'
 import { TableHeaderI } from '../../interfaces/tableInterface'
+import DataType from './DataType'
 interface CellMobileProps {
   [key: string]: any
   header: TableHeaderI[]
+  id: number
 }
 const CellMobile = ({
   cell,

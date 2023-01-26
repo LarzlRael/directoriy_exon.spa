@@ -7,7 +7,7 @@ import { useDocumentTitle } from '../../src/hooks/useDocumentTitle'
 import { useWindowSize } from '../../src/hooks/useWindows'
 import { NavLink } from '../../src/components/text/NavLink'
 import { IconContext } from 'react-icons'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaEdit, FaTimes } from 'react-icons/fa'
 import useAxiosAuth from '../../src/hooks/useAxios'
 import { PymesResponseInterface } from '../../src/interfaces/pymesResponseInterface'
 import {
@@ -27,6 +27,7 @@ import { useVerifyLogginHook } from '../../src/hooks/useVerifyLoggingHook'
 import { GlobalForm } from '../../src/components/forms/GlobalForm'
 import { firstExample } from '../../src/components/input/formPaterns'
 import TableMain from '../../src/components/table/TableMain'
+import { useRouter } from 'next/router'
 
 function adminDashboard() {
   useVerifyLogginHook()
@@ -38,6 +39,7 @@ function adminDashboard() {
     url: '/pymes',
     method: 'GET',
   })
+  const router = useRouter()
   const { windowSize } = useWindowSize()
   const handleToogleMenu = () => {
     setOpenMenu(!openMenu)
@@ -59,7 +61,7 @@ function adminDashboard() {
   return (
     <AdminDashBoard>
       {!loading ? (
-        /* validateArray(preconfigArray(allPymes)) ? (
+        validateArray(preconfigArray(allPymes)) ? (
           <GridContainer className="cards-container">
             {preconfigArray(allPymes).map((pyme) => (
               <PymeCard
@@ -73,24 +75,8 @@ function adminDashboard() {
           <Label textAlign="center" display="block">
             No se encontraron resultados
           </Label>
-        ) */
-        <TableMain
-          header={[
-            { key: 'nombre', name: 'Nombre del curso' },
-            { key: 'email', name: 'Email' },
-            { key: 'telefono', name: 'Telefono' },
-            { key: 'direccion', name: 'Direccion' },
-            { key: 'direccion', name: 'Direccion' },
-            { key: 'profileImage', name: 'Imagen', type: 'img' },
-            { key: 'createdAt', name: 'Usuario desde', type: 'date' },
-            { key: 'description', name: 'Description', type: 'textArea' },
-            /* { key: 'actions', name: 'Acciones' }, */
-          ]}
-          main={preconfigArray(allPymes)}
-          handleInfo={(e, us) => {
-            console.log(e, us)
-          }}
-        />
+        )
+        
       ) : (
         <LoadingExpanded />
       )}
@@ -98,3 +84,31 @@ function adminDashboard() {
   )
 }
 export default adminDashboard
+
+
+{/* <TableMain
+          header={[
+            { key: 'nombre', name: 'Nombre del curso' },
+            { key: 'email', name: 'Email' },
+            { key: 'telefono', name: 'Telefono' },
+            { key: 'direccion', name: 'Direccion' },
+            { key: 'createdAt', name: 'Usuario desde', type: 'date' },
+            {
+              key: 'action',
+              name: 'Acciones',
+              type: 'actions',
+              actions: [
+                {
+                  labelTooltip: 'Editar información',
+                  action: (e) => {
+                    router.push(`/auth/pyme/${e._id}`)
+                  },
+                  icon: <FaEdit color="orange" />,
+                },
+              ],
+            },
+            
+          ]}
+          main={preconfigArray(allPymes)}
+          
+        /> */}

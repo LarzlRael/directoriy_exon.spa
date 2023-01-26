@@ -39,7 +39,7 @@ export const Profile = ({
 
         <div className="border-box profile">
           <div className="heart pointer">
-            <IoHeart width="40px" height="40px" color="#ED4956" />
+            {/* <IoHeart width="40px" height="40px" color="#ED4956" /> */}
             {/*  <Recaptcha
                     sitekey="6LeNLlwbAAAAAIcmdcPPXIlukfpWeRN0bNOT7_xo"
                     render="explicit"

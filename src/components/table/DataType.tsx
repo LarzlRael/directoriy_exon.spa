@@ -1,10 +1,10 @@
 import { processUrlImage } from '../utils/processData'
 import { convertD } from '../utils/convertDate'
 import { validateArray } from '../utils/validation/validation'
+import ToolTip from '../boxes/ToolTip'
 
-/* import { DefaultBtn, RenderButton } from '../buttons'
-import { ToolTip } from '../boxes' */
 import { TableHeaderI } from '../../interfaces/tableInterface'
+import { DefaultBtn, RenderButton } from '../buttons/'
 interface DataTypeProps {
   [key: string]: any
   a: TableHeaderI
@@ -12,20 +12,20 @@ interface DataTypeProps {
 
 const DataType = ({ a, head, reload }: DataTypeProps) => {
   switch (a.type) {
-    /* case 'action':
+    case 'action':
       return (
         <DefaultBtn
           fontSize="1.4rem"
           fontWeight="500"
           background="#e2e4f3"
-          color="var(--blue)"
-          onClick={() => a.key(head, reload)}
+          color="var(--colorPrimary)"
+          onClick={() => a.action!(head)}
           width="auto"
           border="1px solid var(--blue)"
         >
           {a.textBtn}
         </DefaultBtn>
-      ) */
+      )
     case 'img':
       return <img src={processUrlImage(head[a.key], 50)} alt="avatar" />
     case 'a':
@@ -53,24 +53,22 @@ const DataType = ({ a, head, reload }: DataTypeProps) => {
       )
     case 'date':
       return <div>{head[a.key] ? convertD(head[a.key], 'LLLL') : '--'}</div>
-    /* case 'actions':
+    case 'actions':
       return (
         <div style={{ display: 'flex', gap: '8px' }}>
-          {validateArray(a.actions) &&
-            a.actions.map((item, index) => (
-              <ToolTip key={index} content={item.label}>
-                <div>
-                  <RenderButton
-                    background="var(--green)"
-                    onClick={() => item.action(head, reload)}
-                  >
-                    <i className={item.icon}></i>
-                  </RenderButton>
-                </div>
+          {validateArray(a.actions!) &&
+            a.actions!.map((item, i) => (
+              <ToolTip key={i} content={item.labelTooltip}>
+                <RenderButton
+                  background="var(--green)"
+                  onClick={() => item.action(head)}
+                >
+                  {item.icon}
+                </RenderButton>
               </ToolTip>
             ))}
         </div>
-      ) */
+      )
     case 'textArea':
       if (head[a.key]) {
         return (

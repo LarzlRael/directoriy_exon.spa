@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { IoMapOutline } from 'react-icons/io5'
-
+import 'mapbox-gl/dist/mapbox-gl.css';
 import ReactMapGL from 'react-map-gl'
 import { CardDescription } from '../widgets/card/'
 import { capitalizeFirstLetter } from '../utils/utils'
@@ -64,7 +64,7 @@ export const MapLocalization = ({
             height="100%"
             onViewportChange={setViewport}
             mapboxApiAccessToken={mapboxglAccessToken}
-            mapStyle="mapbox://styles/mapbox/streets-v11"
+            mapStyle="mapbox://styles/mapbox/streets-v9"
           >
             {/* <Marker
                         latitude={viewport.latitude}

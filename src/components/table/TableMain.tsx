@@ -1,15 +1,16 @@
 /* import './TableDefault.css' */
 import { useState } from 'react'
+import { validateArray } from '../utils/validation/validation'
+import { TableHeaderI } from '../../interfaces/tableInterface'
 import DataType from './DataType'
 import CellMobile from './CellMobile'
-import { validateArray } from '../utils/validation/validation'
 import useSize from '../../hooks/useSize'
-import { TableHeaderI } from '../../interfaces/tableInterface'
 
 interface TableMainProps {
   [key: string]: any
   header: TableHeaderI[]
   main: { [key: string]: any }[]
+  handleInfo?: (us: any) => void
 }
 
 const TableMain = ({
@@ -30,7 +31,7 @@ const TableMain = ({
   function HandleActivate(index: number, us: any) {
     setactivate(index)
     if (handleInfo) {
-      handleInfo(us, reload)
+      handleInfo(us)
     }
   }
   function TableFordesk() {

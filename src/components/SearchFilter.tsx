@@ -7,6 +7,7 @@ import { H2, Span } from './text'
 import { Form, Formik, Field } from 'formik'
 import { Button } from './buttons/Button'
 import BoxFlex from './boxes/BoxFlex'
+import { FaFilter } from 'react-icons/fa'
 
 const FormContainerdDiv = styled.div`
   /* display: flex; */
@@ -74,7 +75,6 @@ export const SearchFilter = () => {
           <Form className="form-inline">
             {/* <InputSearch type="text"> */}
             <div>
-              {' '}
               <Field
                 id="category"
                 name="category"
@@ -84,7 +84,7 @@ export const SearchFilter = () => {
               <Field
                 id="category2"
                 name="category2"
-                placeholder="Todas las categorias"
+                placeholder="Buscar por nombre"
                 className="input-search"
               />
               <Field
@@ -97,15 +97,19 @@ export const SearchFilter = () => {
 
             {/* <IconFilterList /> */}
 
-            <BoxFlex direction='row'>
-              <Button textColor="black" background="white">
+            <BoxFlex direction="row">
+              <Button
+                textColor="black"
+                background="white"
+                icon={<FaFilter color="var(--colorPrimary)" size={20} />}
+              >
                 Filtro
               </Button>
 
               <Button
                 type="submit"
                 background={primaryColor}
-                icon={<IoSearch color="#fff" height="16px" width="16px" />}
+                icon={<IoSearch color="#fff" size={20} />}
               >
                 Buscar
               </Button>

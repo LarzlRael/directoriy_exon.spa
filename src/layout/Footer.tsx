@@ -19,7 +19,7 @@ export const Footer = () => {
   return (
     <FooterStyled>
       <Label color="white" fontSize="1rem">
-        © {yearCurrently} {footerString}
+        ©{yearCurrently} {footerString}
       </Label>
     </FooterStyled>
   )
