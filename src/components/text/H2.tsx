@@ -31,6 +31,7 @@ interface PropsH2 {
   fontWeight?: string
   textAlign?: 'center' | 'start' | 'end' | 'left' | 'right' | 'justify'
   marginResponsive?: string
+  [x: string]: any
 }
 export const H2 = (props: PropsH2) => (
   <H2Styled {...props}>{props.children}</H2Styled>

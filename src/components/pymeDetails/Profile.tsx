@@ -45,7 +45,6 @@ export const Profile = ({
                     render="explicit"
                                 /> */}
           </div>
-
           <div className="info-profile flex">
             <BoxFlex direction="row">
               <Image
@@ -103,13 +102,15 @@ export const Profile = ({
             <BoxFlex
               direction="row"
               style={{
-                marginTop: '1rem',
+                margin: '1rem 0',
               }}
             >
               {redes_sociales?.map((redSocial) => (
                 <BoxFlex gap="0px" key={redSocial._id}>
                   <SocialLink {...redSocial} />
-                  <label htmlFor="">{redSocial.nombre}</label>
+                  <Label color="#7a82a6" fontSize="14px">
+                    {redSocial.nombre}
+                  </Label>
                 </BoxFlex>
               ))}
             </BoxFlex>
@@ -135,7 +136,12 @@ const SocialLink = ({ nombre, urlRedSocial }: RedesSociales) => {
         </a>
       )
     case 'Whatsapp':
-      return <IoLogoWhatsapp color="#25D366" size={30} />
+      const url = `https://api.whatsapp.com/send?phone=${urlRedSocial}`
+      return (
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <IoLogoWhatsapp color="#25D366" size={30} />
+        </a>
+      )
 
     default:
       return <> </>

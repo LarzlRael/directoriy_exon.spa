@@ -1,12 +1,12 @@
-import { PymeInterfaceResponse } from '../../../interfaces/pymesResponseInterface';
+import { PymesResponseInterface } from '../../../interfaces/pymesResponseInterface'
 export const validateArray = (dataArray: any[]) => {
   return dataArray ? (dataArray.length !== 0 ? true : false) : false
 }
 
 export const preconfigArray = (
-  array: PymeInterfaceResponse[],
-): PymeInterfaceResponse[] => {
-  return array?.map((item: PymeInterfaceResponse) => {
+  array: PymesResponseInterface[],
+): PymesResponseInterface[] => {
+  return array?.map((item) => {
     if (item.urlImages.length !== 0) {
       const imagesConverted = item.urlImages.map((image, i) => {
         const splitString = image.split('upload/')

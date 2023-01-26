@@ -26,6 +26,7 @@ import {
 import { useVerifyLogginHook } from '../../src/hooks/useVerifyLoggingHook'
 import { GlobalForm } from '../../src/components/forms/GlobalForm'
 import { firstExample } from '../../src/components/input/formPaterns'
+import TableMain from '../../src/components/table/TableMain'
 
 function adminDashboard() {
   useVerifyLogginHook()
@@ -58,7 +59,7 @@ function adminDashboard() {
   return (
     <AdminDashBoard>
       {!loading ? (
-        validateArray(preconfigArray(allPymes)) ? (
+        /* validateArray(preconfigArray(allPymes)) ? (
           <GridContainer className="cards-container">
             {preconfigArray(allPymes).map((pyme) => (
               <PymeCard
@@ -72,7 +73,22 @@ function adminDashboard() {
           <Label textAlign="center" display="block">
             No se encontraron resultados
           </Label>
-        )
+        ) */
+        <TableMain
+          header={[
+            { key: 'nombre', name: 'Nombre del curso' },
+            { key: 'email', name: 'Email' },
+            { key: 'telefono', name: 'Telefono' },
+            { key: 'direccion', name: 'Direccion' },
+            { key: 'direccion', name: 'Direccion' },
+            { key: 'profileImage', name: 'Imagen', type: 'img' },
+            /* { key: 'actions', name: 'Acciones' }, */
+          ]}
+          main={preconfigArray(allPymes)}
+          handleInfo={(e, us) => {
+            console.log(e, us)
+          }}
+        />
       ) : (
         <LoadingExpanded />
       )}

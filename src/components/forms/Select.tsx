@@ -12,7 +12,9 @@ export const Select = ({ label, options, ...props }: Props) => {
   const [field, meta] = useField(props)
   return (
     <>
-      <label htmlFor={props.id || props.name}>{label}</label>
+      <label className="Form__label--pyme" htmlFor={props.id || props.name}>
+        {label}
+      </label>
       <select className="Form__input--pyme" {...field} {...props}>
         {options.map((option: OptionsI) => {
           return (
@@ -22,7 +24,7 @@ export const Select = ({ label, options, ...props }: Props) => {
           )
         })}
       </select>
-      
+
       <ErrorMessage name={props.name} component="label" />
     </>
   )

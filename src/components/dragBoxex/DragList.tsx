@@ -8,7 +8,6 @@ const DragList = ({ state, setState }: any) => {
     return result
   }
   function onDragEnd(result: any) {
-  
     if (!result.destination) {
       return
     }

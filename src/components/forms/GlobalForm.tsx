@@ -99,9 +99,9 @@ export const GlobalForm = ({
                 case 'selectRRSS':
                   return (
                     <SelectAdd
-                      uploadFiles={formik.setFieldValue}
                       name={item.name}
                       label={item.label!}
+                      key={item.name}
                     />
                   )
               }

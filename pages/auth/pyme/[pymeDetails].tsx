@@ -88,7 +88,6 @@ const PymeDetails = () => {
   }, [router.isReady])
 
   const onSubmit = async (values: any) => {
-    console.log(values)
     setLoadingForm(true)
     putAction(`/pymes/updatePyme/${onePyme!._id}`, {
       ...values,
@@ -292,7 +291,7 @@ const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
         <BoxFlex className="xd" direction="row" gap="1.5rem">
           {visible ? (
             <FaEye
-              onClick={deletePyme}
+              onClick={changeVisibility}
               className="pointer"
               color="white"
               size={25}
@@ -306,7 +305,7 @@ const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
             />
           )}
           <FaTrashAlt
-            onClick={changeVisibility}
+            onClick={deletePyme}
             className="pointer"
             color="white"
             size={25}

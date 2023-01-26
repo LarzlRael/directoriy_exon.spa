@@ -1,6 +1,7 @@
 import { InformationPlacesI } from '../components/InformationPlaces'
 import { IoPerson, IoHammer } from 'react-icons/io5'
 import { MdFileUpload } from 'react-icons/md'
+import { FaPlusCircle } from 'react-icons/fa'
 import { OptionsI } from '../interfaces/globalFormInterface'
 
 export const informationPlacesData: InformationPlacesI[] = [
@@ -110,6 +111,7 @@ export const socialNetworks = [
   'Twitter',
   'Youtube',
   'Linkedin',
+  'Whatsapp',
 ]
 export const links = [
   {
@@ -151,13 +153,13 @@ export const accountsLink: AccountsLinkInterface[] = [
     items: [
       {
         title: 'Adminstrar Pymes',
-        to: '/dashboard/actualizar',
+        to: '/auth/adminDashboard',
         icon: <MdFileUpload size={25} />,
       },
       {
         title: 'Agregar Pyme',
         to: '/auth/pyme/addPyme',
-        icon: <MdFileUpload size={25} />,
+        icon: <FaPlusCircle size={25} />,
       },
     ],
   },
