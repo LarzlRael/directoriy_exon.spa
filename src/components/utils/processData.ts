@@ -5,14 +5,12 @@ export function processUrlImage(
 ) {
   let parameter = 'c_scale,q_auto,f_auto'
   if (url) {
-    
     if (width && width > 0) {
       parameter = `w_${width},` + parameter
     } else if (height && height > 0) {
       parameter = `h_${height},` + parameter
     }
     const splitUrl = url.split('/')
-    console.log(splitUrl)
     let urlChange = ''
     splitUrl.forEach((e, index) => {
       if (index === 5) {

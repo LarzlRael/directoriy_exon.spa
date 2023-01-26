@@ -1,4 +1,3 @@
-import * as Yup from 'yup'
 export interface GlobalFormInterface {
   inputJson: InputJsonI[]
   onSubmit: (data: any) => void

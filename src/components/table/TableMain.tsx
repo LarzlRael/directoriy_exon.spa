@@ -1,10 +1,16 @@
 /* import './TableDefault.css' */
 import { useState } from 'react'
-
 import DataType from './DataType'
 import CellMobile from './CellMobile'
 import { validateArray } from '../utils/validation/validation'
 import useSize from '../../hooks/useSize'
+import { TableHeaderI } from '../../interfaces/tableInterface'
+
+interface TableMainProps {
+  [key: string]: any
+  header: TableHeaderI[]
+  main: { [key: string]: any }[]
+}
 
 const TableMain = ({
   header,
@@ -13,7 +19,7 @@ const TableMain = ({
   reload,
   keyOrder = '',
   borderBottom = false,
-}: any) => {
+}: TableMainProps) => {
   const { target, currentSize } = useSize()
 
   const gridTable = {
@@ -32,7 +38,7 @@ const TableMain = ({
       <>
         <div className="TableDefault__header" style={gridTable}>
           {validateArray(header)
-            ? header.map((a: any, i: number) => (
+            ? header.map((a, i: number) => (
                 <h2 key={i} className="TableDefault__head">
                   {a.name}
                 </h2>
@@ -42,7 +48,7 @@ const TableMain = ({
         <div className="TableDefault__main">
           {validateArray(main)
             ? main
-                .sort((a: any, b: any) => a[keyOrder] - b[keyOrder])
+                .sort((a, b: any) => a[keyOrder] - b[keyOrder])
                 .map((head: any, i: number) => (
                   <div
                     key={i}
@@ -52,7 +58,7 @@ const TableMain = ({
                     }${activate === i ? 'TableDefault__cell-activate' : ''}`}
                   >
                     {validateArray(header)
-                      ? header.map((a: any, j: any) => (
+                      ? header.map((a, j: number) => (
                           <div
                             onClick={
                               a.type === 'actions'
@@ -77,7 +83,7 @@ const TableMain = ({
     return (
       <>
         {validateArray(main)
-          ? main.map((head: any, i: number) => {
+          ? main.map((head, i: number) => {
               return (
                 <CellMobile
                   key={i}

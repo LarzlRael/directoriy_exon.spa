@@ -4,8 +4,10 @@ import { validateArray } from '../utils/validation/validation'
 
 /* import { DefaultBtn, RenderButton } from '../buttons'
 import { ToolTip } from '../boxes' */
+import { TableHeaderI } from '../../interfaces/tableInterface'
 interface DataTypeProps {
   [key: string]: any
+  a: TableHeaderI
 }
 
 const DataType = ({ a, head, reload }: DataTypeProps) => {
@@ -41,8 +43,8 @@ const DataType = ({ a, head, reload }: DataTypeProps) => {
         <div className="TableDefault__textColor">
           <h4
             style={{
-              background: `${a.color[head[a.key]]}`,
-              color: a.color[head[a.key]] ? '' : 'var(--black)',
+              background: `${a.color![head[a.key]]}`,
+              color: a.color![head[a.key]] ? '' : 'var(--black)',
             }}
           >
             {head[a.key]}

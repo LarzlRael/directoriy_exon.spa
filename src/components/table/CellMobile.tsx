@@ -1,8 +1,9 @@
-
 import { validateArray } from '../utils/validation/validation'
-import DataType from './DataType';
+import DataType from './DataType'
+import { TableHeaderI } from '../../interfaces/tableInterface'
 interface CellMobileProps {
   [key: string]: any
+  header: TableHeaderI[]
 }
 const CellMobile = ({
   cell,
@@ -20,7 +21,7 @@ const CellMobile = ({
           }`}
         >
           {validateArray(header)
-            ? header.map((a: any, i: number) => {
+            ? header.map((a, i: number) => {
                 return (
                   <div
                     onClick={

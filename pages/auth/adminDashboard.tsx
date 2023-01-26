@@ -82,6 +82,8 @@ function adminDashboard() {
             { key: 'direccion', name: 'Direccion' },
             { key: 'direccion', name: 'Direccion' },
             { key: 'profileImage', name: 'Imagen', type: 'img' },
+            { key: 'createdAt', name: 'Usuario desde', type: 'date' },
+            { key: 'description', name: 'Description', type: 'textArea' },
             /* { key: 'actions', name: 'Acciones' }, */
           ]}
           main={preconfigArray(allPymes)}
