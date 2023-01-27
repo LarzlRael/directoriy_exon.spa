@@ -16,6 +16,7 @@ import { HeaderBlack } from '../../src/layout/HeaderBlack'
 import { PymesResponseInterface } from '../../src/interfaces/pymesResponseInterface'
 import useAxios from '../../src/hooks/useAxios'
 import { Input } from '../../src/components/forms/Input'
+import { Layout } from '../../src/layout/Layout';
 
 interface SingleLocationProps {}
 
@@ -79,7 +80,7 @@ const SingleLocation = (props: SingleLocationProps) => {
   }
 
   return (
-    <div>
+    <Layout>
       <HeaderBlack darkMenu={true} sticky={true} />
       <Indicator {...props} />
 
@@ -131,7 +132,7 @@ const SingleLocation = (props: SingleLocationProps) => {
       ) : (
         <Loading />
       )}
-    </div>
+    </Layout>
   )
 }
 

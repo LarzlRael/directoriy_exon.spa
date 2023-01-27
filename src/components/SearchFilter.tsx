@@ -9,7 +9,7 @@ import { Button } from './buttons/Button'
 import BoxFlex from './boxes/BoxFlex'
 import { FaFilter } from 'react-icons/fa'
 import { useDispatch } from 'react-redux';
-import { changeModal } from '../store/slices/slices'
+import { changeModal,openSnackbar } from '../store/slices/slices'
 
 const FormContainerdDiv = styled.div`
   /* display: flex; */
@@ -70,6 +70,13 @@ export const SearchFilter = () => {
 
     }))
   }
+  function onOpenSnackbar(){
+    dispatch(openSnackbar({
+      open: true,
+      message: 'que fue gente',
+      kind: true
+    }))
+  }
 
   return (
     <div className="search-filter">
@@ -115,7 +122,7 @@ export const SearchFilter = () => {
                 textColor="black"
                 background="white"
                 icon={<FaFilter color="var(--colorPrimary)" size={20} />}
-                onClick={onClick}
+                onClick={onOpenSnackbar}
               >
                 Filtro
               </Button>

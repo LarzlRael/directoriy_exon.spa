@@ -29,7 +29,7 @@ const initialState: GlobalState = {
       'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171__340.jpg',
   },
   modalReducer: {
-    status: true,
+    status: false,
     title: '',
     contentModal: '',
     butttonText: '',

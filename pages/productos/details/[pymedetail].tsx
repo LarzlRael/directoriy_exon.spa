@@ -18,6 +18,7 @@ import { PymesResponseInterface } from '../../../src/interfaces/pymesResponseInt
 
 import { useRouter } from 'next/router'
 import { HeaderBlack } from '../../../src/layout/HeaderBlack'
+import { Layout } from '../../../src/layout/Layout';
 
 const PymeDetails = () => {
   const router = useRouter()
@@ -39,7 +40,7 @@ const PymeDetails = () => {
   useDocumentTitle(onePyme?.nombre!)
 
   return (
-    <>
+    <Layout>
       {loading ? (
         <LoadingExpanded />
       ) : onePyme !== null ? (
@@ -114,7 +115,7 @@ const PymeDetails = () => {
       ) : (
         <div className="">No hay</div>
       )}
-    </>
+    </Layout>
   )
 }
 export default PymeDetails

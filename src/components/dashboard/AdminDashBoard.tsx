@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store/store'
 import { logOutSession } from '../../store/slices/slices'
 import { useRouter } from 'next/router'
+import { Layout } from '../../layout/Layout';
 
 interface AdminDashBoardProps {
   children: React.ReactNode
@@ -52,7 +53,7 @@ export const AdminDashBoard = ({ children }: AdminDashBoardProps) => {
     }
   }
   return (
-    <>
+    <Layout>
       <div className="toolbar">
         <IconContext.Provider
           value={{ className: 'Sidebar__icon1', size: '2.5rem' }}
@@ -112,6 +113,6 @@ export const AdminDashBoard = ({ children }: AdminDashBoardProps) => {
         </div>
         <div className="dash-content">{children}</div>
       </div>
-    </>
+    </Layout>
   )
 }

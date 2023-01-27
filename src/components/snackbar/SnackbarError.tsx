@@ -5,7 +5,7 @@ const SnackbarError = ({ message }: any) => {
       style={{ background: '#c93f3f', color: 'var(--white)' }}
     >
       <i className="fas fa-times-circle"></i>
-      message
+      {message}
     </div>
   )
 }
