@@ -1,30 +1,34 @@
-@import "variables";
-@import "mediaQueries";
-@import "mainPage";
-@import "singlePage";
-@import "onePlace";
-@import "formStyle";
-@import "_admin_login.scss";
-@import "tables";
+@import 'variables';
+@import 'mediaQueries';
+@import 'mainPage';
+@import 'singlePage';
+@import 'onePlace';
+@import 'formStyle';
+@import '_admin_login.scss';
+@import 'tables';
+@import 'snackbar';
+@import 'modal';
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 .flex {
-    display: flex;
-    /* align-items: center; */
-    /* align-content: center; */
+  display: flex;
+  /* align-items: center; */
+  /* align-content: center; */
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 :root {
-    --colorPrimary: #02243f;
-    --colorSecondary: #004f6c;
+  --colorPrimary: #02243f;
+  --colorSecondary: #004f6c;
+  --white: #fff;
+  --orange2: #d17742;
 }

@@ -3,46 +3,75 @@ interface indicatorInterface {
   titleIndicator: string
   urlImageIndicator: string
 }
-export interface CounterState {
-  value: number
+interface modalReducerInterface {
+  status: boolean
+  title: string
+  contentModal: React.ReactNode
+  butttonText: string
+  onClick: (() => void) | null | undefined
+  width?: string | null | undefined
+}
+interface GlobalState {
   indicator: indicatorInterface
+  modalReducer: modalReducerInterface
+  snackbarReducer: snackbarReducerInterface
+}
+interface snackbarReducerInterface {
+  open: boolean
+  message: string
+  kind: boolean
 }
 
-const initialState: CounterState = {
-  value: 10,
+const initialState: GlobalState = {
   indicator: {
     titleIndicator: 'title',
     urlImageIndicator:
       'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171__340.jpg',
   },
+  modalReducer: {
+    status: true,
+    title: '',
+    contentModal: '',
+    butttonText: '',
+    onClick: null,
+    width: null,
+  },
+  snackbarReducer: {
+    open: false,
+    message: '',
+    kind: true,
+  },
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const globalSlice = createSlice({
+  name: 'global',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
-
     changeIndicator: (state, action: PayloadAction<indicatorInterface>) => {
       localStorage.setItem('indicator', JSON.stringify(action.payload))
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
+    changeModal: (state, action: PayloadAction<modalReducerInterface>) => {
+      state.modalReducer = {
+        butttonText: action.payload.butttonText,
+        contentModal: action.payload.contentModal,
+        onClick: action.payload.onClick,
+        status: action.payload.status,
+        title: action.payload.title,
+      }
+    },
+    openSnackbar: (state, action: PayloadAction<snackbarReducerInterface>) => {
+      state.snackbarReducer = {
+        kind: action.payload.kind,
+        message: action.payload.message,
+        open: action.payload.open,
+      }
     },
   },
 })
 
 // Action creators are generated for each case reducer function
 export const {
-  increment,
-  decrement,
-  incrementByAmount,
   changeIndicator,
-} = counterSlice.actions
-
-/* export default counterSlice.reducer */
+  changeModal,
+  openSnackbar,
+} = globalSlice.actions

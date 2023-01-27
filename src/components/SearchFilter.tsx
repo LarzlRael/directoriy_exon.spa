@@ -8,6 +8,8 @@ import { Form, Formik, Field } from 'formik'
 import { Button } from './buttons/Button'
 import BoxFlex from './boxes/BoxFlex'
 import { FaFilter } from 'react-icons/fa'
+import { useDispatch } from 'react-redux';
+import { changeModal } from '../store/slices/slices'
 
 const FormContainerdDiv = styled.div`
   /* display: flex; */
@@ -49,6 +51,7 @@ export const H2Styled = styled.h2<{
 ` */
 
 export const SearchFilter = () => {
+  const dispatch = useDispatch()
   const onSubmit = (values: any) => {
     console.log(values)
   }
@@ -56,6 +59,16 @@ export const SearchFilter = () => {
     category: '',
     category2: '',
     search: '',
+  }
+  function onClick() {
+    dispatch(changeModal({
+      status: true,
+      title: 'Filtro',
+      contentModal: <Button>hola</Button>,
+      butttonText: 'Aceptar',
+      onClick: () => console.log('click')
+
+    }))
   }
 
   return (
@@ -102,6 +115,7 @@ export const SearchFilter = () => {
                 textColor="black"
                 background="white"
                 icon={<FaFilter color="var(--colorPrimary)" size={20} />}
+                onClick={onClick}
               >
                 Filtro
               </Button>
