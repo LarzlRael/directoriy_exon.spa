@@ -23,7 +23,15 @@ const ButtonStyle = styled.button<any>`
     opacity: 0.2;
   }
 `
-const NormalButton = (props: any) => {
+interface NormalButtonProps {
+  children: React.ReactNode
+  type?: 'button' | 'submit' | 'reset'
+  onClick?: () => void
+  disabled?: boolean
+  background?: boolean
+  width?: string
+}
+const NormalButton = (props: NormalButtonProps) => {
   const { children, type, onClick, disabled, background, width } = props
   return (
     <ButtonStyle

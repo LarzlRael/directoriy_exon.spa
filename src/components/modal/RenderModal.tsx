@@ -1,5 +1,9 @@
 import styled from 'styled-components'
-const ModalStyle = styled.div<any>`
+const ModalStyle = styled.div<{
+  background?: string
+  width?: string
+  minWidth?: string
+}>`
   position: fixed;
   top: 0;
   left: 0;
@@ -68,7 +72,15 @@ const ModalStyle = styled.div<any>`
     }
   }
 `
-const RenderModal = (props: any) => {
+interface RenderModalProps {
+  onClose: () => void
+  children: React.ReactNode
+  minWidth?: string
+  width?: string
+  closeOutside?: boolean
+  background?: string
+}
+const RenderModal = (props: RenderModalProps) => {
   const {
     onClose,
     children,

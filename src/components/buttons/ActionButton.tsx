@@ -1,5 +1,13 @@
 import GlobalButton from './GlobalButton'
 
+interface ActionButtonProps {
+  onClick: () => void
+  onCancel: () => void
+  textBtn: string
+  textCancel?: string
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
+}
 const ActionButton = ({
   onClick,
   onCancel,
@@ -7,7 +15,7 @@ const ActionButton = ({
   textCancel = 'Cancelar',
   type = 'button',
   disabled = false,
-}: any) => {
+}: ActionButtonProps) => {
   return (
     <div className="ActionButton">
       <GlobalButton background="var(--white)" onClick={onCancel} type="button">

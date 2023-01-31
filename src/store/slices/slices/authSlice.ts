@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-interface indicatorInterface {
-  user: any
-}
+
 export interface AuthState {
   value: number
   user: any

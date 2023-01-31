@@ -96,8 +96,7 @@ export const InformationCard = ({
   const convertSlug = title.replace(' ', '-').toLowerCase()
   const dispatch = useDispatch()
   const router = useRouter()
-  const onClick = (e: any) => {
-    e.preventDefault()
+  const onClick = () => {
     router.push(`/productos/${convertSlug}`)
     dispatch(
       changeIndicator({

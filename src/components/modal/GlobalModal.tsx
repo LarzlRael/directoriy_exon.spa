@@ -7,7 +7,6 @@ import { changeModal } from '../../store/slices/slices'
 
 const GlobalModal = () => {
   const { modalReducer } = useSelector((state: RootState) => state.global)
-  console.log(modalReducer)
   function handelModal() {
     store.dispatch(
       changeModal({
@@ -60,7 +59,6 @@ const GlobalModal = () => {
             </NormalButton>
           )}
         </div>
-        {/* </div> */}
       </RenderModal>
     )
   } else {

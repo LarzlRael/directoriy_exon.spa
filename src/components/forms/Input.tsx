@@ -6,13 +6,12 @@ interface Props {
   type?: 'text' | 'email' | 'password' | 'number'
   [x: string]: any
 }
-export const Input = ({ label,type, ...props }: Props) => {
+export const Input = ({ label, type, ...props }: Props) => {
   const [field, meta] = useField(props)
   const [check, setcheck] = useState({
     typeInput: 'password',
   })
-  function handleCheck(e: any) {
-    console.log(check.typeInput)
+  function handleCheck(e: React.ChangeEvent<HTMLInputElement>) {
     const { checked } = e.target
     setcheck({
       typeInput: checked ? 'text' : 'password',

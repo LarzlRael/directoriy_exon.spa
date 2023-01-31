@@ -16,7 +16,22 @@ const GlobalButtonStyle = styled.button`
     opacity: 0.3;
   }
 `
-const GlobalButton = (props: any) => {
+interface GlobalButtonProps {
+  children: React.ReactNode
+  type?: 'button' | 'submit' | 'reset'
+  onClick?: () => void
+  disabled?: boolean
+  background?: string
+  width?: string
+  color?: string
+  fontSize?: string
+  /* fontWeight?: string */
+  border?: string
+  margin?: string
+  height?: string
+  padding?: string
+}
+const GlobalButton = (props: GlobalButtonProps) => {
   const {
     onClick,
     children,
@@ -25,7 +40,7 @@ const GlobalButton = (props: any) => {
     background = '#e2e4f3',
     color = '#052691',
     fontSize = '1.6rem',
-    fontWeight = '600',
+    /* fontWeight = '600', */
     border,
     disabled,
     margin,
@@ -37,15 +52,7 @@ const GlobalButton = (props: any) => {
     <GlobalButtonStyle
       onClick={onClick}
       style={{
-        width: width,
-        height: height,
-        background: background,
-        color: color,
-        border: border,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        margin: margin,
-        padding: padding,
+        ...props,
         ...rest,
       }}
       type={type}
