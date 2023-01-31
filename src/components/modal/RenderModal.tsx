@@ -68,7 +68,7 @@ const ModalStyle = styled.div<any>`
     }
   }
 `
-const RenderModal = (props:any) => {
+const RenderModal = (props: any) => {
   const {
     onClose,
     children,
@@ -76,7 +76,6 @@ const RenderModal = (props:any) => {
     width = '900px',
     closeOutside = false,
     background = 'var(--white)',
-    
   } = props
 
   return (
