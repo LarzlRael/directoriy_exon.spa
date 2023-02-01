@@ -8,7 +8,7 @@ import { useWindowSize } from '../../src/hooks/useWindows'
 import { NavLink } from '../../src/components/text/NavLink'
 import { IconContext } from 'react-icons'
 import { FaBars, FaEdit, FaTimes } from 'react-icons/fa'
-import useAxiosAuth from '../../src/hooks/useAxios'
+import useAxiosAuth from '../../src/hooks/useAxiosAuth'
 import { PymesResponseInterface } from '../../src/interfaces/pymesResponseInterface'
 import {
   preconfigArray,
@@ -36,7 +36,7 @@ function adminDashboard() {
   const { response: allPymes, loading, reload } = useAxiosAuth<
     PymesResponseInterface[]
   >({
-    url: '/pymes',
+    url: '/pymes/adminpymes',
     method: 'GET',
   })
   const router = useRouter()
@@ -76,7 +76,6 @@ function adminDashboard() {
             No se encontraron resultados
           </Label>
         )
-        
       ) : (
         <LoadingExpanded />
       )}

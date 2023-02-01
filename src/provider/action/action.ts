@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
 const instancia = axios.create()
+
 /* instancia.CancelToken = axios.CancelToken
 instancia.isCancel = axios.isCancel */
 export const getAction = (url: string) => {

@@ -7,15 +7,15 @@ axios.interceptors.request.use(
     const token_seguridad = window.localStorage.getItem('token_seguridad')
     if (token_seguridad) {
       config.headers!.Authorization = 'Bearer ' + token_seguridad
-      return config
     }
+    return config
   },
   (error) => {
     return Promise.reject(error)
   },
 )
-const useAxiosAuth = (axiosParams: AxiosRequestConfig) => {
-  const [response, setResponse] = useState(undefined)
+const useAxiosAuth = <T extends object>(axiosParams: AxiosRequestConfig) => {
+  const [response, setResponse] = useState<T>((null as unknown) as T)
   const [error, setError] = useState<any>()
   const [loading, setLoading] = useState(true)
   const [header, setheader] = useState<AxiosResponseHeaders>()

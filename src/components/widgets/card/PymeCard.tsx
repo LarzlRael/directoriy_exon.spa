@@ -4,6 +4,7 @@ import {
   IoCheckmarkCircle,
   IoLogoFacebook,
   IoLogoInstagram,
+  IoLogoWhatsapp,
 } from 'react-icons/io5'
 
 import {
@@ -37,7 +38,9 @@ export const PymeCard = ({
       <Link
         href={isAdmin ? `/auth/pyme/${_id}` : `/productos/details/${nombre}`}
       >
-        <Image
+        <a>
+
+          <Image
           /* layout="fill" */
           height={250}
           width={250}
@@ -49,6 +52,7 @@ export const PymeCard = ({
           }
           alt={nombre}
         />
+        </a>
       </Link>
 
       <div className="contenido">
@@ -71,27 +75,28 @@ export const PymeCard = ({
 }
 
 const LabelAndIcon = ({ nombre, urlRedSocial }: RedesSociales) => {
+  let urlRedSocialFormated = urlRedSocial
+  if (nombre === 'Whatsapp') {
+    urlRedSocialFormated =
+      'https://api.whatsapp.com/send?phone=' + urlRedSocial
+  }
   return (
     <div
       style={{
-        marginBottom: '0.5rem',
+        marginBottom: '0.3rem',
         display: 'flex',
         alignItems: 'center',
       }}
     >
-      {nombre === 'Instagram' && (
-        <IoLogoInstagram color="#C13584" height="25px" width="25px" />
-      )}
-      {nombre === 'Facebook' && (
-        <IoLogoFacebook color="#3b5998" height="25px" width="25px" />
-      )}
-
+      {nombre === 'Instagram' && <IoLogoInstagram color="#C13584" size={24} />}
+      {nombre === 'Facebook' && <IoLogoFacebook color="#3b5998" size={24} />}
+      {nombre === 'Whatsapp' && <IoLogoWhatsapp color="25D366" size={24} />}
       <a
-        href={urlRedSocial}
+        href={urlRedSocialFormated}
         target="_blank"
         style={{
           textDecoration: 'none',
-          marginLeft: '1rem',
+          marginLeft: '0.6rem',
           color: '#7a82a6',
           fontSize: '0.9rem',
         }}

@@ -38,6 +38,7 @@ import { Input, Select, Switch } from '../../../src/components/forms'
 import { TextArea } from '../../../src/components/forms/TextArea'
 import { GlobalForm } from '../../../src/components/forms/GlobalForm'
 import { pymeForm } from '../../../src/components/input/formPaterns'
+import ToolTip from '../../../src/components/boxes/ToolTip'
 
 const PymeDetails = () => {
   const router = useRouter()
@@ -158,6 +159,7 @@ const PymeDetails = () => {
             title={onePyme?.nombre!}
             id={onePyme?._id!}
             visible={onePyme?.visible!}
+            getOnePyme={getOnePyme}
           />
           <BoxFlex
             className="BoxFlex__pyme--container"
@@ -244,8 +246,9 @@ interface TitleAppbarProps {
   title: string
   id: string
   visible: boolean
+  getOnePyme: () => void
 }
-const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
+const TitleAppbar = ({ title, id, visible, getOnePyme }: TitleAppbarProps) => {
   const router = useRouter()
   function deletePyme() {
     if (confirm('¿Estas seguro de eliminar esta pyme?')) {
@@ -269,7 +272,7 @@ const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
         .then((res: any) => {
           if (validateStatus(res.status)) {
             alert('La pyma ha cambiado de estado')
-            router.back()
+            getOnePyme()
           }
         })
         .catch((err: any) => {
@@ -277,6 +280,7 @@ const TitleAppbar = ({ title, id, visible }: TitleAppbarProps) => {
         })
     }
   }
+  const ref = React.createRef<HTMLDivElement>()
   return (
     <div className="TitleAppbar">
       <BoxFlex
